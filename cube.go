@@ -10,10 +10,10 @@ import (
 func (r *Runtime) setupCube() error {
 	return newObject().
 		// axis.go
-		Const("axis", map[string]cube.Axis{
-			"x": cube.X,
-			"y": cube.Y,
-			"z": cube.Z,
+		Const("Axis", map[string]cube.Axis{
+			"X": cube.X,
+			"Y": cube.Y,
+			"Z": cube.Z,
 		}).
 		Method("axes", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(cube.Axes())
@@ -53,23 +53,23 @@ func (r *Runtime) setupCube() error {
 			return r.vm.ToValue(cube.AnyIntersections(boxes, search))
 		}).
 		// direction.go
-		Const("direction", map[string]cube.Direction{
-			"north": cube.North,
-			"east":  cube.East,
-			"south": cube.South,
-			"west":  cube.West,
+		Const("Direction", map[string]cube.Direction{
+			"North": cube.North,
+			"East":  cube.East,
+			"South": cube.South,
+			"West":  cube.West,
 		}).
 		Method("directions", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(cube.Directions())
 		}).
 		// face.go
-		Const("face", map[string]cube.Face{
-			"up":    cube.FaceUp,
-			"down":  cube.FaceDown,
-			"north": cube.FaceNorth,
-			"east":  cube.FaceEast,
-			"south": cube.FaceSouth,
-			"west":  cube.FaceWest,
+		Const("Face", map[string]cube.Face{
+			"Up":    cube.FaceUp,
+			"Down":  cube.FaceDown,
+			"North": cube.FaceNorth,
+			"East":  cube.FaceEast,
+			"South": cube.FaceSouth,
+			"West":  cube.FaceWest,
 		}).
 		Method("faces", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(cube.Faces())

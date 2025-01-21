@@ -2,16 +2,15 @@
 /// <reference path="mgl64.d.ts" />
 
 declare namespace customblock {
-    interface RenderMethod {
+    class RenderMethod {
+        static readonly Opaque: RenderMethod;
+        static readonly AlphaTest: RenderMethod;
+        static readonly Blend: RenderMethod;
+        static readonly DoubleSided: RenderMethod;
+
         uint8(): number;
         string(): string;
         ambientOcclusion(): boolean;
-    }
-    const renderMethod: {
-        opaque: RenderMethod;
-        alphaTest: RenderMethod;
-        blend: RenderMethod;
-        doubleSided: RenderMethod;
     }
 
     interface Material {

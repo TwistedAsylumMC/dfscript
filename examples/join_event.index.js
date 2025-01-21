@@ -1,12 +1,12 @@
 console.log(biome.badlands.string())
 console.log(cube.rotation(60, 90).elem())
 console.log(block.air().encodeBlock())
-console.log(block.anvil(block.anvilType.undamaged, cube.direction.north).facing)
+console.log(block.anvil({type: block.AnvilType.SlightlyDamaged}).facing)
 
 server.onPlayerJoin(player => {
     player.message(text.emerald + `Welcome, ${player.name}`)
     player.sendTitle(title.create(text.diamond + "Welcome!").withSubtitle(text.gold + "sent by javascript"))
-    player.setGameMode(world.gameMode.survival)
+    player.setGameMode(world.GameMode.Survival)
     player.inventory().addItem(item.stack(item.apple(), 8))
     setTimeout(() => {
         player.message(text.colourf("<red>%s</red>", "Delayed message"))
@@ -14,7 +14,7 @@ server.onPlayerJoin(player => {
             .button("test")
             .button("test2", "textures/items/diamond", (player) => {
                 player.message("You pressed test2")
-                player.inventory().addItem(item.stack(item.splashPotion(potion.wither), 1))
+                player.inventory().addItem(item.stack(item.splashPotion({type: potion.wither}), 1))
             })
             .onSubmit((player, index, closed) => {
                 player.message(`You pressed index ${index}. Closed: ${closed}`)

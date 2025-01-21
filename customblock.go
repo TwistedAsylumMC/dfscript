@@ -7,11 +7,11 @@ import (
 
 func (r *Runtime) setupCustomBlock() error {
 	return newObject().
-		Const("renderMethod", map[string]customblock.Method{
-			"opaque":      customblock.OpaqueRenderMethod(),
-			"alphaTest":   customblock.AlphaTestRenderMethod(),
-			"blend":       customblock.BlendRenderMethod(),
-			"doubleSided": customblock.DoubleSidedRenderMethod(),
+		Const("RenderMethod", map[string]customblock.Method{
+			"Opaque":      customblock.OpaqueRenderMethod(),
+			"AlphaTest":   customblock.AlphaTestRenderMethod(),
+			"Blend":       customblock.BlendRenderMethod(),
+			"DoubleSided": customblock.DoubleSidedRenderMethod(),
 		}).
 		Method("material", func(c goja.FunctionCall) goja.Value {
 			texture, ok := c.Argument(0).Export().(string)

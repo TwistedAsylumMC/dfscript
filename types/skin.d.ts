@@ -1,9 +1,11 @@
 declare namespace skin {
-    interface AnimationType {}
-    const animationType: {
-        head: AnimationType;
-        body32x32: AnimationType;
-        body128x128: AnimationType;
+    class AnimationType {
+        static readonly Head: AnimationType;
+        static readonly Body32x32: AnimationType;
+        static readonly Body128x128: AnimationType;
+
+        uint8(): number;
+        string(): string;
     }
     interface Animation {
         pix: Uint8Array;

@@ -47,159 +47,158 @@ declare namespace item {
     }
     function stack(item: item.Item, count?: number): Stack;
 
-    interface BannerPatternType {
+    class BannerPatternType {
+        static readonly Creeper: BannerPatternType;
+        static readonly Skull: BannerPatternType;
+        static readonly Flower: BannerPatternType;
+        static readonly Mojang: BannerPatternType;
+        static readonly FieldMasoned: BannerPatternType;
+        static readonly BordureIndented: BannerPatternType;
+        static readonly Piglin: BannerPatternType;
+        static readonly Globe: BannerPatternType;
+        static readonly Flow: BannerPatternType;
+        static readonly Guster: BannerPatternType;
+
         uint8(): number;
         string(): string;
     }
-    const bannerPatternType: {
-        creeper: BannerPatternType;
-        skull: BannerPatternType;
-        flower: BannerPatternType;
-        mojang: BannerPatternType;
-        fieldMasoned: BannerPatternType;
-        bordureIndented: BannerPatternType;
-        piglin: BannerPatternType;
-        globe: BannerPatternType;
-        flow: BannerPatternType;
-        guster: BannerPatternType;
-    }
 
-    interface BucketContents {
+    class BucketContents {
+        static readonly Lava: BucketContents;
+        static readonly Water: BucketContents;
+        static readonly Milk: BucketContents;
+
         string(): string;
         liquidType(): string;
         liquid(): [block.Liquid, boolean];
     }
-    const bucketContents: {
-        lava: BucketContents;
-        water: BucketContents;
-        milk: BucketContents;
-    }
 
-    interface Colour {
+    class Colour {
+        static readonly White: Colour;
+        static readonly Orange: Colour;
+        static readonly Magenta: Colour;
+        static readonly LightBlue: Colour;
+        static readonly Yellow: Colour;
+        static readonly Lime: Colour;
+        static readonly Pink: Colour;
+        static readonly Grey: Colour;
+        static readonly LightGrey: Colour;
+        static readonly Cyan: Colour;
+        static readonly Purple: Colour;
+        static readonly Blue: Colour;
+        static readonly Brown: Colour;
+        static readonly Green: Colour;
+        static readonly Red: Colour;
+        static readonly Black: Colour;
+
         // TODO: rgba
         // TODO: signRGBA
         uint8(): number;
         string(): string;
         silverString(): string;
     }
-    const colour: {
-        white: Colour;
-        orange: Colour;
-        magenta: Colour;
-        lightBlue: Colour;
-        yellow: Colour;
-        lime: Colour;
-        pink: Colour;
-        grey: Colour;
-        lightGrey: Colour;
-        cyan: Colour;
-        purple: Colour;
-        blue: Colour;
-        brown: Colour;
-        green: Colour;
-        red: Colour;
-        black: Colour;
-    }
 
-    interface FireworkShape {
+    class FireworkShape {
+        static readonly SmallSphere: FireworkShape;
+        static readonly HugeSphere: FireworkShape;
+        static readonly Star: FireworkShape;
+        static readonly CreeperHead: FireworkShape;
+        static readonly Burst: FireworkShape;
+
         uint8(): number;
         name(): string;
         string(): string;
     }
-    const fireworkShape: {
-        smallSphere: FireworkShape;
-        hugeSphere: FireworkShape;
-        star: FireworkShape;
-        creeperHead: FireworkShape;
-        burst: FireworkShape;
-    }
 
-    interface SherdType {
+    class SherdType {
+        static readonly Angler: SherdType;
+        static readonly Archer: SherdType;
+        static readonly ArmsUp: SherdType;
+        static readonly Blade: SherdType;
+        static readonly Brewer: SherdType;
+        static readonly Burn: SherdType;
+        static readonly Danger: SherdType;
+        static readonly Explorer: SherdType;
+        static readonly Friend: SherdType;
+        static readonly Heart: SherdType;
+        static readonly Heartbreak: SherdType;
+        static readonly Howl: SherdType;
+        static readonly Miner: SherdType;
+        static readonly Mourner: SherdType;
+        static readonly Plenty: SherdType;
+        static readonly Prize: SherdType;
+        static readonly Sheaf: SherdType;
+        static readonly Shelter: SherdType;
+        static readonly Skull: SherdType;
+        static readonly Snort: SherdType;
+        static readonly Flow: SherdType;
+        static readonly Guster: SherdType;
+        static readonly Scrape: SherdType;
+
         uint8(): number;
         string(): string;
     }
-    const sherdType: {
-        angler: SherdType;
-        archer: SherdType;
-        armsUp: SherdType;
-        blade: SherdType;
-        brewer: SherdType;
-        burn: SherdType;
-        danger: SherdType;
-        explorer: SherdType;
-        friend: SherdType;
-        heart: SherdType;
-        heartbreak: SherdType;
-        howl: SherdType;
-        miner: SherdType;
-        mourner: SherdType;
-        plenty: SherdType;
-        prize: SherdType;
-        sheaf: SherdType;
-        shelter: SherdType;
-        skull: SherdType;
-        snort: SherdType;
-        flow: SherdType;
-        guster: SherdType;
-        scrape: SherdType;
-    }
 
-    interface StewType {
+    class StewType {
+        static readonly NightVisionPoppy: StewType;
+        static readonly JumpBoost: StewType;
+        static readonly Weakness: StewType;
+        static readonly BlindnessBluet: StewType;
+        static readonly Poison: StewType;
+        static readonly SaturationDandelion: StewType;
+        static readonly SaturationOrchid: StewType;
+        static readonly FireResistance: StewType;
+        static readonly Regeneration: StewType;
+        static readonly Wither: StewType;
+        static readonly NightVisionTorchflower: StewType;
+        static readonly BlindnessEyeBlossom: StewType;
+        static readonly NauseaBlossom: StewType;
+
         uint8(): number;
         effects: effect.Effect[];
     }
-    const stewType: {
-        nightVisionPoppy: StewType;
-        jumpBoost: StewType;
-        weakness: StewType;
-        blindnessBluet: StewType;
-        poison: StewType;
-        saturationDandelion: StewType;
-        saturationOrchid: StewType;
-        fireResistance: StewType;
-        regeneration: StewType;
-        wither: StewType;
-        nightVisionTorchflower: StewType;
-        blindnessEyeBlossom: StewType;
-        nauseaBlossom: StewType;
-    }
 
-    interface SmithingTemplateType {
+    class SmithingTemplateType {
+        static readonly NetheriteUpgrade: SmithingTemplateType;
+        static readonly Sentry: SmithingTemplateType;
+        static readonly Vex: SmithingTemplateType;
+        static readonly Wild: SmithingTemplateType;
+        static readonly Coast: SmithingTemplateType;
+        static readonly Dune: SmithingTemplateType;
+        static readonly WayFinder: SmithingTemplateType;
+        static readonly Raiser: SmithingTemplateType;
+        static readonly Shaper: SmithingTemplateType;
+        static readonly Host: SmithingTemplateType;
+        static readonly Ward: SmithingTemplateType;
+        static readonly Silence: SmithingTemplateType;
+        static readonly Tide: SmithingTemplateType;
+        static readonly Snout: SmithingTemplateType;
+        static readonly Rib: SmithingTemplateType;
+        static readonly Eye: SmithingTemplateType;
+        static readonly Spire: SmithingTemplateType;
+        static readonly Flow: SmithingTemplateType;
+        static readonly Bolt: SmithingTemplateType;
+
         string(): string;
     }
-    const smithingTemplateType: {
-        netheriteUpgrade: SmithingTemplateType;
-        sentry: SmithingTemplateType;
-        vex: SmithingTemplateType;
-        wild: SmithingTemplateType;
-        coast: SmithingTemplateType;
-        dune: SmithingTemplateType;
-        wayFinder: SmithingTemplateType;
-        raiser: SmithingTemplateType;
-        shaper: SmithingTemplateType;
-        host: SmithingTemplateType;
-        ward: SmithingTemplateType;
-        silence: SmithingTemplateType;
-        tide: SmithingTemplateType;
-        snout: SmithingTemplateType;
-        rib: SmithingTemplateType;
-        eye: SmithingTemplateType;
-        spire: SmithingTemplateType;
-        flow: SmithingTemplateType;
-        bolt: SmithingTemplateType;
+
+    class ToolType {
+        static readonly None: ToolType;
+        static readonly Pickaxe: ToolType;
+        static readonly Axe: ToolType;
+        static readonly Hoe: ToolType;
+        static readonly Shovel: ToolType;
+        static readonly Shears: ToolType;
     }
 
-    interface ToolType {}
-    const toolType: {
-        none: ToolType;
-        pickaxe: ToolType;
-        axe: ToolType;
-        hoe: ToolType;
-        shovel: ToolType;
-        shears: ToolType;
-    }
+    class ToolTier {
+        static readonly Wood: ToolTier;
+        static readonly Stone: ToolTier;
+        static readonly Iron: ToolTier;
+        static readonly Gold: ToolTier;
+        static readonly Diamond: ToolTier;
+        static readonly Netherite: ToolTier;
 
-    interface ToolTier {
         harvestLevel: number;
         baseMiningEfficiency: number;
         baseAttackDamag: number;
@@ -207,23 +206,14 @@ declare namespace item {
         durability: number;
         name: string;
     }
-    const toolTier: {
-        wood: ToolTier;
-        stone: ToolTier;
-        iron: ToolTier;
-        gold: ToolTier;
-        diamond: ToolTier;
-        netherite: ToolTier;
-    }
 
-    interface WrittenBookGeneration {
+    class WrittenBookGeneration {
+        static readonly Original: WrittenBookGeneration;
+        static readonly Copy: WrittenBookGeneration;
+        static readonly CopyOfCopy: WrittenBookGeneration;
+
         uint8(): number;
         string(): string;
-    }
-    const writtenBookGeneration: {
-        original: WrittenBookGeneration;
-        copy: WrittenBookGeneration;
-        copyOfCopy: WrittenBookGeneration;
     }
 
     interface Armour {
@@ -279,7 +269,7 @@ declare namespace item {
         twinkle: boolean;
         trail: boolean;
     }
-    function fireworkExplosion(shape: FireworkShape, colour: Colour, fade: Colour, fades?: boolean, twinkle?: boolean, trail?: boolean): FireworkExplosion;
+    function fireworkExplosion(props: { shape?: FireworkShape, colour?: Colour, fade?: Colour, fades?: boolean, twinkle?: boolean, trail?: boolean }): FireworkExplosion;
 
     interface Tool {
         toolType(): ToolType;
@@ -297,25 +287,25 @@ declare namespace item {
         template: SmithingTemplateType;
         material: ArmourTrimMaterial;
     }
-    function armourTrim(template: SmithingTemplateType, material: ArmourTrimMaterial): ArmourTrim;
+    function armourTrim(props: { template?: SmithingTemplateType, material?: ArmourTrimMaterial }): ArmourTrim;
     interface Arrow extends Item {
         Tip: potion.Potion;
     }
-    function arrow(tip?: potion.Potion): Arrow;
+    function arrow(props: { tip?: potion.Potion }): Arrow;
     interface Axe extends Item, Tool {
         tier: ToolTier;
     }
-    function axe(tier: ToolTier): Axe;
+    function axe(props: { tier?: ToolTier }): Axe;
     interface BakedPotato extends Item {}
     function bakedPotato(): BakedPotato;
     interface BannerPattern extends Item {
         type: BannerPatternType;
     }
-    function bannerPattern(type: BannerPatternType): BannerPattern;
+    function bannerPattern(props: { type?: BannerPatternType }): BannerPattern;
     interface Beef extends Item {
         cooked: boolean;
     }
-    function beef(cooked?: boolean): Beef;
+    function beef(props: { cooked?: boolean }): Beef;
     interface Beetroot extends Item {}
     function beetroot(): Beetroot;
     interface BeetrootSoup extends Item {}
@@ -333,12 +323,12 @@ declare namespace item {
     interface BookAndQuill extends Item {
         pages: string[];
     }
-    function bookAndQuill(pages: string[]): BookAndQuill;
+    function bookAndQuill(props: { pages?: string[] }): BookAndQuill;
     interface Boots extends Item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function boots(tier: ArmourTier, trim?: ArmourTrim): Boots;
+    function boots(props: { tier?: ArmourTier, trim?: ArmourTrim }): Boots;
     interface BottleOfEnchanting extends Item {}
     function bottleOfEnchanting(): BottleOfEnchanting;
     interface Bow extends Item {}
@@ -352,7 +342,7 @@ declare namespace item {
     interface Bucket extends Item {
         content: BucketContents;
     }
-    function bucket(content: BucketContents): Bucket;
+    function bucket(props: { content?: BucketContents }): Bucket;
     interface CarrotOnAStick extends Item {}
     function carrotOnAStick(): CarrotOnAStick;
     interface Charcoal extends Item {}
@@ -361,11 +351,11 @@ declare namespace item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function chestplate(tier: ArmourTier, trim?: ArmourTrim): Chestplate;
+    function chestplate(props: { tier?: ArmourTier, trim?: ArmourTrim }): Chestplate;
     interface Chicken extends Item {
         cooked: boolean;
     }
-    function chicken(cooked?: boolean): Chicken;
+    function chicken(props: { cooked?: boolean }): Chicken;
     interface ClayBall extends Item {}
     function clayBall(): ClayBall;
     interface Clock extends Item {}
@@ -375,7 +365,7 @@ declare namespace item {
     interface Cod extends Item {
         cooked: boolean;
     }
-    function cod(cooked?: boolean): Cod;
+    function cod(props: { cooked?: boolean }): Cod;
     interface Compass extends Item {}
     function compass(): Compass;
     interface Cookie extends Item {}
@@ -395,7 +385,7 @@ declare namespace item {
     interface Dye extends Item {
         colour: Colour;
     }
-    function dye(colour: Colour): Dye;
+    function dye(props: { colour?: Colour }): Dye;
     interface EchoShard extends Item {}
     function echoShard(): EchoShard;
     interface Egg extends Item {}
@@ -420,11 +410,11 @@ declare namespace item {
         duration: Date;
         explosions: FireworkExplosion[];
     }
-    function firework(duration: Date, explosions: FireworkExplosion[]): Firework;
+    function firework(props: { duration?: Date, explosions?: FireworkExplosion[] }): Firework;
     interface FireworkStar extends Item {
         fireworkExplosion: FireworkExplosion;
     }
-    function fireworkStar(explosion: FireworkExplosion): FireworkStar;
+    function fireworkStar(props: { explosion?: FireworkExplosion }): FireworkStar;
     interface Flint extends Item {}
     function flint(): Flint;
     interface FlintAndSteel extends Item {}
@@ -440,7 +430,7 @@ declare namespace item {
     interface GoatHorn extends Item {
         type: sound.HornType;
     }
-    function goatHorn(type: sound.HornType): GoatHorn;
+    function goatHorn(props: { type?: sound.HornType }): GoatHorn;
     interface GoldIngot extends Item, ArmourTrimMaterial {}
     function goldIngot(): GoldIngot;
     interface GoldNugget extends Item {}
@@ -457,11 +447,11 @@ declare namespace item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function helmet(tier: ArmourTier, trim?: ArmourTrim): Helmet;
+    function helmet(props: { tier?: ArmourTier, trim?: ArmourTrim }): Helmet;
     interface Hoe extends Item, Tool {
         tier: ToolTier;
     }
-    function hoe(tier: ToolTier): Hoe;
+    function hoe(props: { tier?: ToolTier }): Hoe;
     interface Honeycomb extends Item {}
     function honeycomb(): Honeycomb;
     interface InkSac extends Item {}
@@ -478,11 +468,11 @@ declare namespace item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function leggings(tier: ArmourTier, trim?: ArmourTrim): Leggings;
+    function leggings(props: { tier?: ArmourTier, trim?: ArmourTrim }): Leggings;
     interface LingeringPotion extends Item {
         type: potion.Potion;
     }
-    function lingeringPotion(type: potion.Potion): LingeringPotion;
+    function lingeringPotion(props: { type?: potion.Potion }): LingeringPotion;
     interface MagmaCream extends Item {}
     function magmaCream(): MagmaCream;
     interface MelonSlice extends Item {}
@@ -492,11 +482,11 @@ declare namespace item {
     interface MusicDisc extends Item {
         type: sound.DiscType;
     }
-    function musicDisc(type: sound.DiscType): MusicDisc;
+    function musicDisc(props: { type?: sound.DiscType }): MusicDisc;
     interface Mutton extends Item {
         cooked: boolean;
     }
-    function mutton(cooked?: boolean): Mutton;
+    function mutton(props: { cooked?: boolean }): Mutton;
     interface NautilusShell extends Item {}
     function nautilusShell(): NautilusShell;
     interface NetherBrick extends Item {}
@@ -516,7 +506,7 @@ declare namespace item {
     interface Pickaxe extends Item, Tool {
         tier: ToolTier;
     }
-    function pickaxe(tier: ToolTier): Pickaxe;
+    function pickaxe(props: { tier?: ToolTier }): Pickaxe;
     interface PoisonousPotato extends Item {}
     function poisonousPotato(): PoisonousPotato;
     interface PoppedChorusFruit extends Item {}
@@ -524,15 +514,15 @@ declare namespace item {
     interface Porkchop extends Item {
         cooked: boolean;
     }
-    function porkchop(cooked?: boolean): Porkchop;
+    function porkchop(props: { cooked?: boolean }): Porkchop;
     interface Potion extends Item {
         type: potion.Potion;
     }
-    function potion(type: potion.Potion): Potion;
+    function potion(props: { type?: potion.Potion }): Potion;
     interface PotterySherd extends Item {
         type: SherdType;
     }
-    function potterySherd(type: SherdType): PotterySherd;
+    function potterySherd(props: { type?: SherdType }): PotterySherd;
     interface PrismarineCrystals extends Item {}
     function prismarineCrystals(): PrismarineCrystals;
     interface PrismarineShard extends Item {}
@@ -544,7 +534,7 @@ declare namespace item {
     interface Rabbit extends Item {
         cooked: boolean;
     }
-    function rabbit(cooked?: boolean): Rabbit;
+    function rabbit(props: { cooked?: boolean }): Rabbit;
     interface RabbitFoot extends Item {}
     function rabbitFoot(): RabbitFoot;
     interface RabbitHide extends Item {}
@@ -564,9 +554,9 @@ declare namespace item {
     interface RottenFlesh extends Item {}
     function rottenFlesh(): RottenFlesh;
     interface Salmon extends Item {
-        cooked?: boolean;
+        cooked: boolean;
     }
-    function salmon(cooked: boolean): Salmon;
+    function salmon(props: { cooked?: boolean }): Salmon;
     interface Scute extends Item {}
     function scute(): Scute;
     interface Shears extends Item, Tool {}
@@ -574,7 +564,7 @@ declare namespace item {
     interface Shovel extends Item, Tool {
         tier: ToolTier;
     }
-    function shovel(tier: ToolTier): Shovel;
+    function shovel(props: { tier?: ToolTier }): Shovel;
     interface ShulkerShell extends Item {}
     function shulkerShell(): ShulkerShell;
     interface Slimeball extends Item {}
@@ -582,7 +572,7 @@ declare namespace item {
     interface SmithingTemplate extends Item {
         template: SmithingTemplateType;
     }
-    function smithingTemplate(template: SmithingTemplateType): SmithingTemplate;
+    function smithingTemplate(props: { template?: SmithingTemplateType }): SmithingTemplate;
     interface Snowball extends Item {}
     function snowball(): Snowball;
     interface SpiderEye extends Item {}
@@ -590,7 +580,7 @@ declare namespace item {
     interface SplashPotion extends Item {
         type: potion.Potion;
     }
-    function splashPotion(type: potion.Potion): SplashPotion;
+    function splashPotion(props: { type?: potion.Potion }): SplashPotion;
     interface Spyglass extends Item {}
     function spyglass(): Spyglass;
     interface Stick extends Item {}
@@ -600,11 +590,11 @@ declare namespace item {
     interface SuspiciousStew extends Item {
         type: StewType;
     }
-    function suspiciousStew(type: StewType): SuspiciousStew;
+    function suspiciousStew(props: { type?: StewType }): SuspiciousStew;
     interface Sword extends Item, Tool {
         tier: ToolTier;
     }
-    function sword(tier: ToolTier): Sword;
+    function sword(props: { tier?: ToolTier }): Sword;
     interface Totem extends Item {}
     function totem(): Totem;
     interface TropicalFish extends Item {}
@@ -621,5 +611,5 @@ declare namespace item {
         generation: WrittenBookGeneration;
         pages: string[];
     }
-    function writtenBook(title: string, author: string, generation: WrittenBookGeneration, pages: string[]): WrittenBook;
+    function writtenBook(props: { title?: string, author?: string, generation?: WrittenBookGeneration, pages?: string[] }): WrittenBook;
 }

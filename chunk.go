@@ -10,17 +10,17 @@ func (r *Runtime) setupChunk() error {
 	return newObject().
 		Const("subChunkVersion", chunk.SubChunkVersion).
 		Const("currentBlockVersion", chunk.CurrentBlockVersion).
-		Const("encoding", map[string]chunk.Encoding{
-			"disk":    chunk.DiskEncoding,
-			"network": chunk.NetworkEncoding,
+		Const("Encoding", map[string]chunk.Encoding{
+			"Disk":    chunk.DiskEncoding,
+			"Network": chunk.NetworkEncoding,
 		}).
-		Const("paletteEncoding", map[string]any{
-			"biome": chunk.BiomePaletteEncoding,
-			"block": chunk.BlockPaletteEncoding,
+		Const("PaletteEncoding", map[string]any{
+			"Biome": chunk.BiomePaletteEncoding,
+			"Block": chunk.BlockPaletteEncoding,
 		}).
-		Const("light", map[string]any{
-			"sky":   chunk.SkyLight,
-			"block": chunk.BlockLight,
+		Const("Light", map[string]any{
+			"Sky":   chunk.SkyLight,
+			"Block": chunk.BlockLight,
 		}).
 		Method("encodeBiomes", func(c goja.FunctionCall) goja.Value {
 			ch, ok := c.Argument(0).Export().(*chunk.Chunk)

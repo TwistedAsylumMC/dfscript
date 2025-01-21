@@ -1,13 +1,14 @@
 declare namespace bossbar {
-    interface Colour {}
-    const colour: {
-        blue: Colour;
-        green: Colour;
-        grey: Colour;
-        purple: Colour;
-        red: Colour;
-        white: Colour;
-        yellow: Colour;
+    class Colour {
+        static readonly blue: Colour;
+        static readonly green: Colour;
+        static readonly grey: Colour;
+        static readonly purple: Colour;
+        static readonly red: Colour;
+        static readonly white: Colour;
+        static readonly yellow: Colour;
+
+        uint8(): number;
     }
 
     interface BossBar {

@@ -7,10 +7,10 @@ import (
 
 func (r *Runtime) setupSkin() error {
 	return newObject().
-		Const("animationType", map[string]skin.AnimationType{
-			"head":        skin.AnimationHead,
-			"body32x32":   skin.AnimationBody32x32,
-			"body128x128": skin.AnimationBody128x128,
+		Const("AnimationType", map[string]skin.AnimationType{
+			"Head":        skin.AnimationHead,
+			"Body32x32":   skin.AnimationBody32x32,
+			"Body128x128": skin.AnimationBody128x128,
 		}).
 		Method("animation", func(c goja.FunctionCall) goja.Value {
 			width, ok := c.Argument(0).Export().(int64)

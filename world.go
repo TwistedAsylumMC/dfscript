@@ -7,22 +7,22 @@ import (
 
 func (r *Runtime) setupWorld() error {
 	return newObject().
-		Const("difficulty", map[string]world.Difficulty{
-			"peaceful": world.DifficultyPeaceful,
-			"easy":     world.DifficultyEasy,
-			"normal":   world.DifficultyNormal,
-			"hard":     world.DifficultyHard,
+		Const("Difficulty", map[string]world.Difficulty{
+			"Peaceful": world.DifficultyPeaceful,
+			"Easy":     world.DifficultyEasy,
+			"Normal":   world.DifficultyNormal,
+			"Hard":     world.DifficultyHard,
 		}).
-		Const("gameMode", map[string]world.GameMode{
-			"adventure": world.GameModeAdventure,
-			"creative":  world.GameModeCreative,
-			"survival":  world.GameModeSurvival,
-			"spectator": world.GameModeSpectator,
+		Const("GameMode", map[string]world.GameMode{
+			"Adventure": world.GameModeAdventure,
+			"Creative":  world.GameModeCreative,
+			"Survival":  world.GameModeSurvival,
+			"Spectator": world.GameModeSpectator,
 		}).
-		Const("dimension", map[string]world.Dimension{
-			"overworld": world.Overworld,
-			"nether":    world.Nether,
-			"end":       world.End,
+		Const("Dimension", map[string]world.Dimension{
+			"Overworld": world.Overworld,
+			"Nether":    world.Nether,
+			"End":       world.End,
 		}).
 		Const("nopGenerator", world.NopGenerator{}).
 		Const("nopProvider", world.NopProvider{}).

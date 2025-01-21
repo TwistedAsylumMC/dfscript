@@ -1,16 +1,15 @@
 /// <reference path="item.d.ts" />
 
 declare namespace enchantment {
-    interface Rarity {
+    class Rarity {
+        static readonly Common: Rarity;
+        static readonly Uncommon: Rarity;
+        static readonly Rare: Rarity;
+        static readonly VeryRare: Rarity;
+
         name(): string;
         cost(): number;
         weight(): number;
-    }
-    const rarity: {
-        common: Rarity;
-        uncommon: Rarity;
-        rare: Rarity;
-        veryRare: Rarity;
     }
 
     interface EnchantmentType {

@@ -12,7 +12,7 @@ declare namespace inventory {
         firstFunc(func: (item: item.Stack) => boolean): [number, boolean];
         firstEmpty(): [number, boolean];
         swap(slot1: number, slot2: number): void;
-        addItem(item: item.Stack): [number];
+        addItem(item: item.Stack): number;
         removeItem(item: item.Stack): void;
         removeItemFunc(n: number, func: (item: item.Stack) => boolean): void;
         containsItem(item: item.Stack): boolean;

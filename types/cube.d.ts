@@ -1,16 +1,15 @@
 /// <reference path="mgl64.d.ts" />
 
 declare namespace cube {
-    interface Axis {
+    class Axis {
+        static readonly X: Axis;
+        static readonly Y: Axis;
+        static readonly Z: Axis;
+
         rotateLeft(): Axis;
         rotateRight(): Axis;
         vec3(): mgl64.Vec3;
         string(): string;
-    }
-    const axis: {
-        x: Axis;
-        y: Axis;
-        z: Axis;
     }
     function axes(): Axis[];
 
@@ -42,36 +41,34 @@ declare namespace cube {
     function box(x0: number, y0: number, z0: number, x1: number, y1: number, z1: number): BBox;
     function anyIntersections(boxes: BBox[], search: BBox): boolean;
 
-    interface Direction {
+    class Direction {
+        static readonly North: Direction;
+        static readonly East: Direction;
+        static readonly South: Direction;
+        static readonly West: Direction;
+
         face(): Face;
         opposite(): Direction;
         rotateLeft(): Direction;
         rotateRight(): Direction;
         string(): string;
     }
-    const direction: {
-        north: Direction;
-        east: Direction;
-        south: Direction;
-        west: Direction;
-    }
     function directions(): Direction[];
 
-    interface Face {
+    class Face {
+        Up: Face;
+        Down: Face;
+        North: Face;
+        East: Face;
+        South: Face;
+        West: Face;
+
         axis(): Axis;
         direction(): Direction;
         opposite(): Face;
         rotateLeft(): Face;
         rotateRight(): Face;
         string(): string;
-    }
-    const face: {
-        up: Face;
-        down: Face;
-        north: Face;
-        east: Face;
-        south: Face;
-        west: Face;
     }
     function faces(): Face[];
     function horizontalFaces(): Face[];

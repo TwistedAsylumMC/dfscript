@@ -13,129 +13,129 @@ import (
 
 func (r *Runtime) setupItem() error {
 	return newObject().
-		Const("toolType", map[string]item.ToolType{
-			"none":    item.TypeNone,
-			"pickaxe": item.TypePickaxe,
-			"axe":     item.TypeAxe,
-			"hoe":     item.TypeHoe,
-			"shovel":  item.TypeShovel,
-			"shears":  item.TypeShears,
+		Const("ToolType", map[string]item.ToolType{
+			"None":    item.TypeNone,
+			"Pickaxe": item.TypePickaxe,
+			"Axe":     item.TypeAxe,
+			"Hoe":     item.TypeHoe,
+			"Shovel":  item.TypeShovel,
+			"Shears":  item.TypeShears,
 		}).
-		Const("toolTier", map[string]item.ToolTier{
-			"wood":      item.ToolTierWood,
-			"gold":      item.ToolTierGold,
-			"stone":     item.ToolTierStone,
-			"iron":      item.ToolTierIron,
-			"diamond":   item.ToolTierDiamond,
-			"netherite": item.ToolTierNetherite,
+		Const("ToolTier", map[string]item.ToolTier{
+			"Wood":      item.ToolTierWood,
+			"Gold":      item.ToolTierGold,
+			"Stone":     item.ToolTierStone,
+			"Iron":      item.ToolTierIron,
+			"Diamond":   item.ToolTierDiamond,
+			"Netherite": item.ToolTierNetherite,
 		}).
-		Const("writtenBookGeneration", map[string]item.WrittenBookGeneration{
-			"original":   item.OriginalGeneration(),
-			"copy":       item.CopyGeneration(),
-			"copyOfCopy": item.CopyOfCopyGeneration(),
+		Const("WrittenBookGeneration", map[string]item.WrittenBookGeneration{
+			"Original":   item.OriginalGeneration(),
+			"Copy":       item.CopyGeneration(),
+			"CopyOfCopy": item.CopyOfCopyGeneration(),
 		}).
-		Const("stewType", map[string]item.StewType{
-			"nightVisionPoppy":       item.NightVisionPoppyStew(),
-			"jumpBoost":              item.JumpBoostStew(),
-			"weakness":               item.WeaknessStew(),
-			"blindnessBluet":         item.BlindnessBluetStew(),
-			"poison":                 item.PoisonStew(),
-			"saturationDandelion":    item.SaturationDandelionStew(),
-			"saturationOrchid":       item.SaturationOrchidStew(),
-			"fireResistance":         item.FireResistanceStew(),
-			"regeneration":           item.RegenerationStew(),
-			"wither":                 item.WitherStew(),
-			"nightVisionTorchflower": item.NightVisionTorchflowerStew(),
-			"blindnessEyeBlossom":    item.BlindnessEyeblossomStew(),
-			"nauseaBlossom":          item.NauseaStew(),
+		Const("StewType", map[string]item.StewType{
+			"NightVisionPoppy":       item.NightVisionPoppyStew(),
+			"JumpBoost":              item.JumpBoostStew(),
+			"Weakness":               item.WeaknessStew(),
+			"BlindnessBluet":         item.BlindnessBluetStew(),
+			"Poison":                 item.PoisonStew(),
+			"SaturationDandelion":    item.SaturationDandelionStew(),
+			"SaturationOrchid":       item.SaturationOrchidStew(),
+			"FireResistance":         item.FireResistanceStew(),
+			"Regeneration":           item.RegenerationStew(),
+			"Wither":                 item.WitherStew(),
+			"NightVisionTorchflower": item.NightVisionTorchflowerStew(),
+			"BlindnessEyeBlossom":    item.BlindnessEyeblossomStew(),
+			"NauseaBlossom":          item.NauseaStew(),
 		}).
-		Const("smithingTemplateType", map[string]item.SmithingTemplateType{
-			"netheriteUpgrade": item.TemplateNetheriteUpgrade(),
-			"sentry":           item.TemplateSentry(),
-			"vex":              item.TemplateVex(),
-			"wild":             item.TemplateWild(),
-			"coast":            item.TemplateCoast(),
-			"dune":             item.TemplateDune(),
-			"wayFinder":        item.TemplateWayFinder(),
-			"raiser":           item.TemplateRaiser(),
-			"shaper":           item.TemplateShaper(),
-			"host":             item.TemplateHost(),
-			"ward":             item.TemplateWard(),
-			"silence":          item.TemplateSilence(),
-			"tide":             item.TemplateTide(),
-			"snout":            item.TemplateSnout(),
-			"rib":              item.TemplateRib(),
-			"eye":              item.TemplateEye(),
-			"spire":            item.TemplateSpire(),
-			"flow":             item.TemplateFlow(),
-			"bolt":             item.TemplateBolt(),
+		Const("SmithingTemplateType", map[string]item.SmithingTemplateType{
+			"NetheriteUpgrade": item.TemplateNetheriteUpgrade(),
+			"Sentry":           item.TemplateSentry(),
+			"Vex":              item.TemplateVex(),
+			"Wild":             item.TemplateWild(),
+			"Coast":            item.TemplateCoast(),
+			"Dune":             item.TemplateDune(),
+			"WayFinder":        item.TemplateWayFinder(),
+			"Raiser":           item.TemplateRaiser(),
+			"Shaper":           item.TemplateShaper(),
+			"Host":             item.TemplateHost(),
+			"Ward":             item.TemplateWard(),
+			"Silence":          item.TemplateSilence(),
+			"Tide":             item.TemplateTide(),
+			"Snout":            item.TemplateSnout(),
+			"Rib":              item.TemplateRib(),
+			"Eye":              item.TemplateEye(),
+			"Spire":            item.TemplateSpire(),
+			"Flow":             item.TemplateFlow(),
+			"Bolt":             item.TemplateBolt(),
 		}).
-		Const("sherdType", map[string]item.SherdType{
-			"angler":     item.SherdTypeAngler(),
-			"archer":     item.SherdTypeArcher(),
-			"armsUp":     item.SherdTypeArmsUp(),
-			"blade":      item.SherdTypeBlade(),
-			"brewer":     item.SherdTypeBrewer(),
-			"burn":       item.SherdTypeBurn(),
-			"danger":     item.SherdTypeDanger(),
-			"explorer":   item.SherdTypeExplorer(),
-			"friend":     item.SherdTypeFriend(),
-			"heart":      item.SherdTypeHeart(),
-			"heartbreak": item.SherdTypeHeartbreak(),
-			"howl":       item.SherdTypeHowl(),
-			"miner":      item.SherdTypeMiner(),
-			"mourner":    item.SherdTypeMourner(),
-			"plenty":     item.SherdTypePlenty(),
-			"prize":      item.SherdTypePrize(),
-			"sheaf":      item.SherdTypeSheaf(),
-			"shelter":    item.SherdTypeShelter(),
-			"skull":      item.SherdTypeSkull(),
-			"snort":      item.SherdTypeSnort(),
-			"flow":       item.SherdTypeFlow(),
-			"guster":     item.SherdTypeGuster(),
-			"scrape":     item.SherdTypeScrape(),
+		Const("SherdType", map[string]item.SherdType{
+			"Angler":     item.SherdTypeAngler(),
+			"Archer":     item.SherdTypeArcher(),
+			"ArmsUp":     item.SherdTypeArmsUp(),
+			"Blade":      item.SherdTypeBlade(),
+			"Brewer":     item.SherdTypeBrewer(),
+			"Burn":       item.SherdTypeBurn(),
+			"Danger":     item.SherdTypeDanger(),
+			"Explorer":   item.SherdTypeExplorer(),
+			"Friend":     item.SherdTypeFriend(),
+			"Heart":      item.SherdTypeHeart(),
+			"Heartbreak": item.SherdTypeHeartbreak(),
+			"Howl":       item.SherdTypeHowl(),
+			"Miner":      item.SherdTypeMiner(),
+			"Mourner":    item.SherdTypeMourner(),
+			"Plenty":     item.SherdTypePlenty(),
+			"Prize":      item.SherdTypePrize(),
+			"Sheaf":      item.SherdTypeSheaf(),
+			"Shelter":    item.SherdTypeShelter(),
+			"Skull":      item.SherdTypeSkull(),
+			"Snort":      item.SherdTypeSnort(),
+			"Flow":       item.SherdTypeFlow(),
+			"Guster":     item.SherdTypeGuster(),
+			"Scrape":     item.SherdTypeScrape(),
 		}).
-		Const("colour", map[string]item.Colour{
-			"white":     item.ColourWhite(),
-			"orange":    item.ColourOrange(),
-			"magenta":   item.ColourMagenta(),
-			"lightBlue": item.ColourLightBlue(),
-			"yellow":    item.ColourYellow(),
-			"lime":      item.ColourLime(),
-			"pink":      item.ColourPink(),
-			"grey":      item.ColourGrey(),
-			"lightGrey": item.ColourLightGrey(),
-			"cyan":      item.ColourCyan(),
-			"purple":    item.ColourPurple(),
-			"blue":      item.ColourBlue(),
-			"brown":     item.ColourBrown(),
-			"green":     item.ColourGreen(),
-			"red":       item.ColourRed(),
-			"black":     item.ColourBlack(),
+		Const("Colour", map[string]item.Colour{
+			"White":     item.ColourWhite(),
+			"Orange":    item.ColourOrange(),
+			"Magenta":   item.ColourMagenta(),
+			"LightBlue": item.ColourLightBlue(),
+			"Yellow":    item.ColourYellow(),
+			"Lime":      item.ColourLime(),
+			"Pink":      item.ColourPink(),
+			"Grey":      item.ColourGrey(),
+			"LightGrey": item.ColourLightGrey(),
+			"Cyan":      item.ColourCyan(),
+			"Purple":    item.ColourPurple(),
+			"Blue":      item.ColourBlue(),
+			"Brown":     item.ColourBrown(),
+			"Green":     item.ColourGreen(),
+			"Red":       item.ColourRed(),
+			"Black":     item.ColourBlack(),
 		}).
-		Const("bucketContents", map[string]item.BucketContent{
-			"milk":  item.MilkBucketContent(),
-			"water": item.LiquidBucketContent(block.Water{}),
-			"lava":  item.LiquidBucketContent(block.Lava{}),
+		Const("BucketContents", map[string]item.BucketContent{
+			"Milk":  item.MilkBucketContent(),
+			"Water": item.LiquidBucketContent(block.Water{}),
+			"Lava":  item.LiquidBucketContent(block.Lava{}),
 		}).
-		Const("bannerPatternType", map[string]item.BannerPatternType{
-			"creeper":         item.CreeperBannerPattern(),
-			"skull":           item.SkullBannerPattern(),
-			"flower":          item.FlowerBannerPattern(),
-			"mojang":          item.MojangBannerPattern(),
-			"fieldMasoned":    item.FieldMasonedBannerPattern(),
-			"bordureIndented": item.BordureIndentedBannerPattern(),
-			"piglin":          item.PiglinBannerPattern(),
-			"globe":           item.GlobeBannerPattern(),
-			"flow":            item.FlowBannerPattern(),
-			"guster":          item.GusterBannerPattern(),
+		Const("BannerPatternType", map[string]item.BannerPatternType{
+			"Creeper":         item.CreeperBannerPattern(),
+			"Skull":           item.SkullBannerPattern(),
+			"Flower":          item.FlowerBannerPattern(),
+			"Mojang":          item.MojangBannerPattern(),
+			"FieldMasoned":    item.FieldMasonedBannerPattern(),
+			"BordureIndented": item.BordureIndentedBannerPattern(),
+			"Piglin":          item.PiglinBannerPattern(),
+			"Globe":           item.GlobeBannerPattern(),
+			"Flow":            item.FlowBannerPattern(),
+			"Guster":          item.GusterBannerPattern(),
 		}).
-		Const("fireworkShape", map[string]item.FireworkShape{
-			"smallSphere": item.FireworkShapeSmallSphere(),
-			"hugeSphere":  item.FireworkShapeHugeSphere(),
-			"star":        item.FireworkShapeStar(),
-			"creeperHead": item.FireworkShapeCreeperHead(),
-			"burst":       item.FireworkShapeBurst(),
+		Const("FireworkShape", map[string]item.FireworkShape{
+			"SmallSphere": item.FireworkShapeSmallSphere(),
+			"HugeSphere":  item.FireworkShapeHugeSphere(),
+			"Star":        item.FireworkShapeStar(),
+			"CreeperHead": item.FireworkShapeCreeperHead(),
+			"Burst":       item.FireworkShapeBurst(),
 		}).
 		Method("amethystShard", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.AmethystShard{})
@@ -166,39 +166,32 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.ArmourTierNetherite{})
 		}).
 		Method("armourTrim", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(item.SmithingTemplateType)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an item.SmithingTemplateType, got %T", c.Argument(0).Export()))
-			}
-			m, ok := c.Argument(1).Export().(item.ArmourTrimMaterial)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 1 is not an item.ArmourTrimMaterial, got %T", c.Argument(1).Export()))
-			}
-			return r.vm.ToValue(item.ArmourTrim{Template: t, Material: m})
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["template"].(item.SmithingTemplateType)
+			mat, _ := m["material"].(item.ArmourTrimMaterial)
+			return r.vm.ToValue(item.ArmourTrim{Template: t, Material: mat})
 		}).
 		Method("arrow", func(c goja.FunctionCall) goja.Value {
-			tip, _ := c.Argument(0).Export().(potion.Potion)
+			m := c.Argument(0).Export().(map[string]any)
+			tip, _ := m["tip"].(potion.Potion)
 			return r.vm.ToValue(item.Arrow{Tip: tip})
 		}).
 		Method("axe", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ToolTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a ToolTier, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Axe{Tier: tier})
 		}).
 		Method("bakedPotato", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.BakedPotato{})
 		}).
 		Method("bannerPattern", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(item.BannerPatternType)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an item.BannerPatternType, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(item.BannerPatternType)
 			return r.vm.ToValue(item.BannerPattern{Type: t})
 		}).
 		Method("beef", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Beef{Cooked: cooked})
 		}).
 		Method("beetroot", func(c goja.FunctionCall) goja.Value {
@@ -223,18 +216,14 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Book{})
 		}).
 		Method("bookAndQuill", func(c goja.FunctionCall) goja.Value {
-			pages, ok := c.Argument(0).Export().([]string)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a []string, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			pages, _ := m["pages"].([]string)
 			return r.vm.ToValue(item.BookAndQuill{Pages: pages})
 		}).
 		Method("boots", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ArmourTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an ArmourTier, got %T", c.Argument(0).Export()))
-			}
-			trim, _ := c.Argument(1).Export().(item.ArmourTrim)
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ArmourTier)
+			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Boots{Tier: tier, Trim: trim})
 		}).
 		Method("bottleOfEnchanting", func(c goja.FunctionCall) goja.Value {
@@ -253,10 +242,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Brick{})
 		}).
 		Method("bucket", func(c goja.FunctionCall) goja.Value {
-			cont, ok := c.Argument(0).Export().(item.BucketContent)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an item.BucketContent, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			cont, _ := m["content"].(item.BucketContent)
 			return r.vm.ToValue(item.Bucket{Content: cont})
 		}).
 		Method("carrotOnAStick", func(c goja.FunctionCall) goja.Value {
@@ -266,15 +253,14 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Charcoal{})
 		}).
 		Method("chestplate", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ArmourTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an ArmourTier, got %T", c.Argument(0).Export()))
-			}
-			trim, _ := c.Argument(1).Export().(item.ArmourTrim)
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ArmourTier)
+			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Chestplate{Tier: tier, Trim: trim})
 		}).
 		Method("chicken", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Chicken{Cooked: cooked})
 		}).
 		Method("clayBall", func(c goja.FunctionCall) goja.Value {
@@ -287,7 +273,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Coal{})
 		}).
 		Method("cod", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Cod{Cooked: cooked})
 		}).
 		Method("compass", func(c goja.FunctionCall) goja.Value {
@@ -315,10 +302,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.DriedKelp{})
 		}).
 		Method("dye", func(c goja.FunctionCall) goja.Value {
-			col, ok := c.Argument(0).Export().(item.Colour)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an item.Colour, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			col, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(item.Dye{Colour: col})
 		}).
 		Method("echoShard", func(c goja.FunctionCall) goja.Value {
@@ -352,32 +337,19 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.FireCharge{})
 		}).
 		Method("firework", func(c goja.FunctionCall) goja.Value {
-			d, ok := c.Argument(0).Export().(time.Duration)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a time.Duration, got %T", c.Argument(0).Export()))
-			}
-			explosions, ok := c.Argument(1).Export().([]item.FireworkExplosion)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 1 is not a []item.FireworkExplosion, got %T", c.Argument(1).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			d, _ := m["duration"].(time.Duration)
+			explosions, _ := m["explosions"].([]item.FireworkExplosion)
 			return r.vm.ToValue(item.Firework{Duration: d, Explosions: explosions})
 		}).
 		Method("fireworkExplosion", func(c goja.FunctionCall) goja.Value {
-			shape, ok := c.Argument(0).Export().(item.FireworkShape)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a FireworkShape, got %T", c.Argument(0).Export()))
-			}
-			colour, ok := c.Argument(1).Export().(item.Colour)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 1 is not a Colour, got %T", c.Argument(1).Export()))
-			}
-			fade, ok := c.Argument(2).Export().(item.Colour)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 2 is not a Colour, got %T", c.Argument(2).Export()))
-			}
-			fades, _ := c.Argument(3).Export().(bool)
-			twinkle, _ := c.Argument(4).Export().(bool)
-			trail, _ := c.Argument(5).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			shape, _ := m["shape"].(item.FireworkShape)
+			colour, _ := m["colour"].(item.Colour)
+			fade, _ := m["fade"].(item.Colour)
+			fades, _ := m["fades"].(bool)
+			twinkle, _ := m["twinkle"].(bool)
+			trail, _ := m["trail"].(bool)
 			return r.vm.ToValue(item.FireworkExplosion{
 				Shape:   shape,
 				Colour:  colour,
@@ -388,10 +360,8 @@ func (r *Runtime) setupItem() error {
 			})
 		}).
 		Method("fireworkStar", func(c goja.FunctionCall) goja.Value {
-			explosion, ok := c.Argument(0).Export().(item.FireworkExplosion)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a FireworkExplosion, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			explosion, _ := m["explosion"].(item.FireworkExplosion)
 			return r.vm.ToValue(item.FireworkStar{FireworkExplosion: explosion})
 		}).
 		Method("flint", func(c goja.FunctionCall) goja.Value {
@@ -413,10 +383,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.GlowstoneDust{})
 		}).
 		Method("goatHorn", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(sound.Horn)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a sound.Horn, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(sound.Horn)
 			return r.vm.ToValue(item.GoatHorn{Type: t})
 		}).
 		Method("goldIngot", func(c goja.FunctionCall) goja.Value {
@@ -438,18 +406,14 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.HeartOfTheSea{})
 		}).
 		Method("helmet", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ArmourTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an ArmourTier, got %T", c.Argument(0).Export()))
-			}
-			trim, _ := c.Argument(1).Export().(item.ArmourTrim)
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ArmourTier)
+			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Helmet{Tier: tier, Trim: trim})
 		}).
 		Method("hoe", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ToolTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a ToolTier, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Hoe{Tier: tier})
 		}).
 		Method("honeycomb", func(c goja.FunctionCall) goja.Value {
@@ -471,18 +435,14 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Leather{})
 		}).
 		Method("leggings", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ArmourTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not an ArmourTier, got %T", c.Argument(0).Export()))
-			}
-			trim, _ := c.Argument(1).Export().(item.ArmourTrim)
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ArmourTier)
+			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Leggings{Tier: tier, Trim: trim})
 		}).
 		Method("lingeringPotion", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(potion.Potion)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a Potion, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(potion.Potion)
 			return r.vm.ToValue(item.LingeringPotion{Type: t})
 		}).
 		Method("magmaCream", func(c goja.FunctionCall) goja.Value {
@@ -495,14 +455,13 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.MushroomStew{})
 		}).
 		Method("musicDisc", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(sound.DiscType)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a DiscType, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(sound.DiscType)
 			return r.vm.ToValue(item.MusicDisc{DiscType: t})
 		}).
 		Method("mutton", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Mutton{Cooked: cooked})
 		}).
 		Method("nautilusShell", func(c goja.FunctionCall) goja.Value {
@@ -530,10 +489,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.PhantomMembrane{})
 		}).
 		Method("pickaxe", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ToolTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a ToolTier, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Pickaxe{Tier: tier})
 		}).
 		Method("poisonousPotato", func(c goja.FunctionCall) goja.Value {
@@ -543,21 +500,18 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.PoppedChorusFruit{})
 		}).
 		Method("porkchop", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Porkchop{Cooked: cooked})
 		}).
 		Method("potion", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(potion.Potion)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a Potion, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(potion.Potion)
 			return r.vm.ToValue(item.Potion{Type: t})
 		}).
 		Method("potterySherd", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(item.SherdType)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a SherdType, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(item.SherdType)
 			return r.vm.ToValue(item.PotterySherd{Type: t})
 		}).
 		Method("prismarineCrystals", func(c goja.FunctionCall) goja.Value {
@@ -573,7 +527,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.PumpkinPie{})
 		}).
 		Method("rabbit", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Rabbit{Cooked: cooked})
 		}).
 		Method("rabbitFoot", func(c goja.FunctionCall) goja.Value {
@@ -604,7 +559,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.RottenFlesh{})
 		}).
 		Method("salmon", func(c goja.FunctionCall) goja.Value {
-			cooked, _ := c.Argument(0).Export().(bool)
+			m := c.Argument(0).Export().(map[string]any)
+			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Salmon{Cooked: cooked})
 		}).
 		Method("scute", func(c goja.FunctionCall) goja.Value {
@@ -614,10 +570,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Shears{})
 		}).
 		Method("shovel", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ToolTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a ToolTier, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Shovel{Tier: tier})
 		}).
 		Method("shulkerShell", func(c goja.FunctionCall) goja.Value {
@@ -627,10 +581,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Slimeball{})
 		}).
 		Method("smithingTemplate", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(item.SmithingTemplateType)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a SmithingTemplateType, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["template"].(item.SmithingTemplateType)
 			return r.vm.ToValue(item.SmithingTemplate{Template: t})
 		}).
 		Method("snowball", func(c goja.FunctionCall) goja.Value {
@@ -640,10 +592,8 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.SpiderEye{})
 		}).
 		Method("splashPotion", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(potion.Potion)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a Potion, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(potion.Potion)
 			return r.vm.ToValue(item.SplashPotion{Type: t})
 		}).
 		Method("spyglass", func(c goja.FunctionCall) goja.Value {
@@ -656,17 +606,13 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Sugar{})
 		}).
 		Method("suspiciousStew", func(c goja.FunctionCall) goja.Value {
-			t, ok := c.Argument(0).Export().(item.StewType)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a StewType, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			t, _ := m["type"].(item.StewType)
 			return r.vm.ToValue(item.SuspiciousStew{Type: t})
 		}).
 		Method("sword", func(c goja.FunctionCall) goja.Value {
-			tier, ok := c.Argument(0).Export().(item.ToolTier)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a ToolTier, got %T", c.Argument(0).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Sword{Tier: tier})
 		}).
 		Method("toolNone", func(c goja.FunctionCall) goja.Value {
@@ -688,22 +634,11 @@ func (r *Runtime) setupItem() error {
 			return r.vm.ToValue(item.Wheat{})
 		}).
 		Method("writtenBook", func(c goja.FunctionCall) goja.Value {
-			title, ok := c.Argument(0).Export().(string)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 0 is not a string, got %T", c.Argument(0).Export()))
-			}
-			author, ok := c.Argument(1).Export().(string)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 1 is not a string, got %T", c.Argument(1).Export()))
-			}
-			gen, ok := c.Argument(2).Export().(item.WrittenBookGeneration)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 2 is not a WrittenBookGeneration, got %T", c.Argument(0).Export()))
-			}
-			pages, ok := c.Argument(3).Export().([]string)
-			if !ok {
-				panic(r.vm.NewTypeError("argument 3 is not a []string, got %T", c.Argument(3).Export()))
-			}
+			m := c.Argument(0).Export().(map[string]any)
+			title, _ := m["title"].(string)
+			author, _ := m["author"].(string)
+			gen, _ := m["generation"].(item.WrittenBookGeneration)
+			pages, _ := m["pages"].([]string)
 			return r.vm.ToValue(item.WrittenBook{Title: title, Author: author, Generation: gen, Pages: pages})
 		}).
 		Method("stack", func(c goja.FunctionCall) goja.Value {

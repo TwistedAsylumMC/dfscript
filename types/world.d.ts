@@ -27,21 +27,25 @@ declare namespace world {
 
     interface Viewer {}
 
-    interface Difficulty {
+    class Difficulty {
+        static readonly Peaceful: Difficulty;
+        static readonly Easy: Difficulty;
+        static readonly Normal: Difficulty;
+        static readonly Hard: Difficulty;
+
         foodRegenerates(): boolean;
         starvationHealthLimit(): number;
         fireSpreadIncrease(): number;
     }
-    const difficulty: {
-        peaceful: Difficulty;
-        easy: Difficulty;
-        normal: Difficulty;
-        hard: Difficulty;
-    }
     function difficultyId(difficulty: Difficulty): number | null;
     function difficultyById(id: number): Difficulty | null;
 
-    interface GameMode {
+    class GameMode {
+        static readonly Survival: GameMode;
+        static readonly Creative: GameMode;
+        static readonly Adventure: GameMode;
+        static readonly Spectator: GameMode;
+
         allowsEditing(): boolean;
         allowsTakingDamage(): boolean;
         creativeInventory(): boolean;
@@ -50,26 +54,19 @@ declare namespace world {
         allowsInteraction(): boolean;
         visible(): boolean;
     }
-    const gameMode: {
-        survival: GameMode;
-        creative: GameMode;
-        adventure: GameMode;
-        spectator: GameMode;
-    }
     function gameModeId(gameMode: GameMode): number | null;
     function gameModeById(id: number): GameMode | null;
 
-    interface Dimension {
+    class Dimension {
+        static readonly Overworld: Dimension;
+        static readonly Nether: Dimension;
+        static readonly End: Dimension;
+
         range(): cube.Range;
         waterEvaporates(): boolean;
         lavaSpreadDuration(): Date;
         weatherCycle(): number;
         timeCycle(): number;
-    }
-    const dimension: {
-        overworld: Dimension;
-        nether: Dimension;
-        end: Dimension;
     }
     function dimensionId(dimension: Dimension): number | null;
     function dimensionById(id: number): Dimension | null;

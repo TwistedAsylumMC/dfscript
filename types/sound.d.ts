@@ -8,76 +8,72 @@ declare namespace sound {
         play(world: world.World, pos: mgl64.Vec3): void;
     }
 
-    interface InstrumentType {
+    class InstrumentType {
+        static readonly Banjo: InstrumentType;
+        static readonly Bass: InstrumentType;
+        static readonly BassDrum: InstrumentType;
+        static readonly Bell: InstrumentType;
+        static readonly Bit: InstrumentType;
+        static readonly Chimes: InstrumentType;
+        static readonly ClicksAndSticks: InstrumentType;
+        static readonly CowBell: InstrumentType;
+        static readonly Didgeridoo: InstrumentType;
+        static readonly Flute: InstrumentType;
+        static readonly Guitar: InstrumentType;
+        static readonly IronXylophone: InstrumentType;
+        static readonly Piano: InstrumentType;
+        static readonly Pling: InstrumentType;
+        static readonly Snare: InstrumentType;
+        static readonly Xylophone: InstrumentType;
+
         int32(): number;
     }
-    const instrumentType: {
-        banjo: InstrumentType;
-        bass: InstrumentType;
-        bassDrum: InstrumentType;
-        bell: InstrumentType;
-        bit: InstrumentType;
-        chimes: InstrumentType;
-        clicksAndSticks: InstrumentType;
-        cowBell: InstrumentType;
-        didgeridoo: InstrumentType;
-        flute: InstrumentType;
-        guitar: InstrumentType;
-        ironXylophone: InstrumentType;
-        piano: InstrumentType;
-        pling: InstrumentType;
-        snare: InstrumentType;
-        xylophone: InstrumentType;
-    }
 
-    interface DiscType {
+    class DiscType {
+        static readonly No13: DiscType;
+        static readonly Cat: DiscType;
+        static readonly Blocks: DiscType;
+        static readonly Chirp: DiscType;
+        static readonly Far: DiscType;
+        static readonly Mall: DiscType;
+        static readonly Mellohi: DiscType;
+        static readonly Stal: DiscType;
+        static readonly Strad: DiscType;
+        static readonly Ward: DiscType;
+        static readonly No11: DiscType;
+        static readonly Wait: DiscType;
+        static readonly Otherside: DiscType;
+        static readonly Pigstep: DiscType;
+        static readonly No5: DiscType;
+        static readonly Relic: DiscType;
+        static readonly Creator: DiscType;
+        static readonly CreatorMusicBox: DiscType;
+        static readonly Precipice: DiscType;
+
         uint8(): number;
         string(): string;
         displayName(): string;
         author(): string
     }
-    const discType: {
-        13: DiscType;
-        cat: DiscType;
-        blocks: DiscType;
-        chirp: DiscType;
-        far: DiscType;
-        mall: DiscType;
-        mellohi: DiscType;
-        stal: DiscType;
-        strad: DiscType;
-        ward: DiscType;
-        11: DiscType;
-        wait: DiscType;
-        otherside: DiscType;
-        pigstep: DiscType;
-        5: DiscType;
-        relic: DiscType;
-        creator: DiscType;
-        creatorMusicBox: DiscType;
-        precipice: DiscType;
-    }
 
-    interface HornType {
+    class HornType {
+        static readonly Ponder: HornType;
+        static readonly Sing: HornType;
+        static readonly Seek: HornType;
+        static readonly Feel: HornType;
+        static readonly Admire: HornType;
+        static readonly Call: HornType;
+        static readonly Yearn: HornType;
+        static readonly Dream: HornType;
+
         uint8(): number;
         name(): string;
     }
-    const hornType: {
-        ponder: HornType;
-        sing: HornType;
-        seek: HornType;
-        feel: HornType;
-        admire: HornType;
-        call: HornType;
-        yearn: HornType;
-        dream: HornType;
-    }
 
-    interface CrossbowLoading {}
-    const crossbowLoading: {
-        start: CrossbowLoading;
-        middle: CrossbowLoading;
-        end: CrossbowLoading;
+    class CrossbowLoading {
+        static readonly Start: CrossbowLoading;
+        static readonly Middle: CrossbowLoading;
+        static readonly End: CrossbowLoading;
     }
 
     interface AnvilBreak extends Sound {}

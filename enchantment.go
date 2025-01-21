@@ -8,11 +8,11 @@ import (
 
 func (r *Runtime) setupEnchantment() error {
 	return newObject().
-		Const("rarity", map[string]item.EnchantmentRarity{
-			"common":   item.EnchantmentRarityCommon,
-			"uncommon": item.EnchantmentRarityUncommon,
-			"rare":     item.EnchantmentRarityRare,
-			"veryRare": item.EnchantmentRarityVeryRare,
+		Const("Rarity", map[string]item.EnchantmentRarity{
+			"Common":   item.EnchantmentRarityCommon,
+			"Uncommon": item.EnchantmentRarityUncommon,
+			"Rare":     item.EnchantmentRarityRare,
+			"VeryRare": item.EnchantmentRarityVeryRare,
 		}).
 		Const("aquaAffinity", enchantment.AquaAffinity).
 		Const("blastProtection", enchantment.BlastProtection).

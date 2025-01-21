@@ -8,22 +8,19 @@ declare namespace chunk {
     const subChunkVersion: number;
     const currentBlockVersion: number;
 
-    interface Encoding {}
-    const encoding: {
-        disk: Encoding;
-        network: Encoding;
+    class Encoding {
+        static readonly Disk: Encoding;
+        static readonly Network: Encoding;
     }
 
-    interface PaletteEncoding {}
-    const paletteEncoding: {
-        biome: PaletteEncoding;
-        block: PaletteEncoding;
+    class PaletteEncoding {
+        static readonly Biome: PaletteEncoding;
+        static readonly Block: PaletteEncoding;
     }
 
-    interface Light {}
-    const light: {
-        block: Light;
-        sky: Light;
+    class Light {
+        static readonly Block: Light;
+        static readonly sky: Light;
     }
 
     interface LightArea {
