@@ -2,7 +2,6 @@ package dfscript
 
 import (
 	"github.com/dop251/goja"
-	"github.com/google/uuid"
 )
 
 func (r *Runtime) setupServer() error {
@@ -21,15 +20,7 @@ func (r *Runtime) setupServer() error {
 			return r.vm.ToValue(players)
 		}).
 		Method("player", func(c goja.FunctionCall) goja.Value {
-			var id uuid.UUID
-			switch arg := c.Argument(0).Export().(type) {
-			case string:
-				id, _ = uuid.Parse(arg)
-			case uuid.UUID:
-				id = arg
-			default:
-				panic(r.vm.NewTypeError("argument 0 must be a string or uuid.UUID"))
-			}
+			id := r.exportUUID(c, 0)
 			p, ok := r.players[id]
 			if !ok {
 				return nil
@@ -59,6 +50,24 @@ func (r *Runtime) setupServer() error {
 			}
 			r.onPlayerJoin = append(r.onPlayerJoin, callable{f, c.This})
 			return nil
+		}).
+		Method("world", func(c goja.FunctionCall) goja.Value {
+			name, ok := c.Argument(0).Export().(string)
+			if !ok {
+				panic(r.vm.NewTypeError("world expects a string as its first argument"))
+			}
+			w, ok := r.worlds[name]
+			if !ok {
+				return nil
+			}
+			return r.vm.ToValue(w)
+		}).
+		Method("worlds", func(c goja.FunctionCall) goja.Value {
+			var worlds []*goja.Object
+			for _, w := range r.worlds {
+				worlds = append(worlds, w.obj)
+			}
+			return r.vm.ToValue(worlds)
 		}).
 		Apply(r.vm, "server")
 }

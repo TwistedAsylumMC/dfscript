@@ -1,8 +1,12 @@
 /// <reference path="biome.d.ts" />
 /// <reference path="block.d.ts" />
 /// <reference path="cube.d.ts" />
+/// <reference path="entity.d.ts" />
 /// <reference path="generator.d.ts" />
 /// <reference path="item.d.ts" />
+/// <reference path="particle.d.ts" />
+/// <reference path="player.d.ts" />
+/// <reference path="sound.d.ts" />
 
 declare namespace world {
     interface Config {
@@ -22,7 +26,46 @@ declare namespace world {
     interface BlockSource {
         block(pos: cube.Pos): block.Block;
     }
-    interface World extends BlockSource {}
+    interface World extends BlockSource {
+        name: string;
+        dimension: Dimension;
+        range: cube.Range;
+        block(pos: cube.Pos): block.Block;
+        setBlock(pos: cube.Pos, block: block.Block, opts?: SetOpts): void;
+        liquid(pos: cube.Pos): block.Liquid;
+        setLiquid(pos: cube.Pos, liquid: block.Liquid): void;
+        // TODO: buildStructure
+        scheduleBlockUpdate(pos: cube.Pos, block: block.Block, delay: number): void;
+        highestLightBlocker(x: number, z: number): number;
+        highestBlock(x: number, z: number): number;
+        light(pos: cube.Pos): number;
+        skyLight(pos: cube.Pos): number;
+        biome(pos: cube.Pos): biome.Biome;
+        setBiome(pos: cube.Pos, biome: biome.Biome): void;
+        temperature(pos: cube.Pos): number;
+        rainingAt(pos: cube.Pos): boolean;
+        snowingAt(pos: cube.Pos): boolean;
+        thunderingAt(pos: cube.Pos): boolean;
+        addParticle(pos: mgl64.Vec3, particle: particle.Particle): void;
+        playEntityAnimation(entity: entity.Entity, animation: EntityAnimation): void;
+        playSound(pos: mgl64.Vec3, sound: sound.Sound): void;
+        players(): player.Player[];
+        time(): number;
+        setTime(time: number): void;
+        stopTime(): void;
+        startTime(): void;
+        spawn(): cube.Pos;
+        setSpawn(pos: cube.Pos): void;
+        playerSpawn(uuid: string): cube.Pos;
+        setPlayerSpawn(uuid: string, pos: cube.Pos): void;
+        defaultGameMode(): GameMode;
+        setDefaultGameMode(gameMode: GameMode): void;
+        setTickRange(range: cube.Range): void;
+        difficulty(): Difficulty;
+        setDifficulty(difficulty: Difficulty): void;
+        save(): void;
+        close(): void;
+    }
     function create(config?: Config): World;
 
     interface Viewer {}

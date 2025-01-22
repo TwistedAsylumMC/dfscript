@@ -325,7 +325,7 @@ declare namespace player {
         nameTag(): string;
         onFireDuration(): Date;
         onGround(): boolean;
-        // TODO: openBlockContainer(): void;
+        openBlockContainer(pos: cube.Pos): void;
         openSign(pos: cube.Pos, frontSide: boolean): void;
         pickBlock(pos: cube.Pos): void;
         // TODO: placeBlock(): void;
@@ -410,6 +410,7 @@ declare namespace player {
         useItemOnEntity(entity: entity.Entity): void;
         usingItem(): boolean;
         velocity(): mgl64.Vec3;
+        world(): world.World;
 
         onItemDrop(callback: (event: ItemDropEvent) => void): void;
         onHeldSlotChange(callback: (event: HeldSlotChangeEvent) => void): void;

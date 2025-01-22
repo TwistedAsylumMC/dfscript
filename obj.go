@@ -56,6 +56,20 @@ func (b *objectBuilder) Method(name string, fn func(c goja.FunctionCall) goja.Va
 	return b
 }
 
+func (b *objectBuilder) PropsMethod(name string, fn func(m map[string]any) goja.Value) *objectBuilder {
+	b.methods = append(b.methods, objectBuilderMethod{
+		name: name,
+		fn: func(c goja.FunctionCall) goja.Value {
+			m, ok := c.Argument(0).Export().(map[string]any)
+			if !ok {
+				m = make(map[string]any)
+			}
+			return fn(m)
+		},
+	})
+	return b
+}
+
 func (b *objectBuilder) Constructor(name string, fn func(c goja.ConstructorCall) any) *objectBuilder {
 	b.constructors = append(b.constructors, objectBuilderConstructor{
 		name: name,

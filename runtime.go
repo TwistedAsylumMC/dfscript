@@ -25,6 +25,7 @@ type Runtime struct {
 	reg  *require.Registry
 	loop *EventLoop
 
+	worlds       map[string]*World
 	players      map[uuid.UUID]*Player
 	onPlayerJoin []callable
 }
@@ -36,6 +37,7 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 		vm:  goja.New(),
 		reg: new(require.Registry),
 
+		worlds:  make(map[string]*World),
 		players: make(map[uuid.UUID]*Player),
 	}
 	r.vm.SetFieldNameMapper(goja.UncapFieldNameMapper())
@@ -47,6 +49,8 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	console.Enable(r.vm)
 	process.Enable(r.vm)
 	url.Enable(r.vm)
+
+	r.worlds[s.World().Name()] = NewWorld(r, s.World())
 
 	var err error
 	multierr.AppendInto(&err, r.setupBiome())
@@ -68,7 +72,6 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	// TODO: world/mcdb
 	multierr.AppendInto(&err, r.setupModel())
 	multierr.AppendInto(&err, r.setupParticle())
-	// TODO: Player
 	multierr.AppendInto(&err, r.setupPotion())
 	multierr.AppendInto(&err, r.setupRecipe())
 	multierr.AppendInto(&err, r.setupScoreboard())
@@ -94,6 +97,28 @@ func (r *Runtime) Run(script string) bool {
 			panic(err)
 		}
 	})
+}
+
+func (r *Runtime) World(name string) *World {
+	if w, ok := r.worlds[name]; ok {
+		return w
+	}
+	return nil
+}
+
+func (r *Runtime) WorldFromValue(v goja.Value) *World {
+	if v == nil {
+		return nil
+	}
+	m, ok := v.Export().(map[string]any)
+	if !ok {
+		return nil
+	}
+	n, ok := m["name"].(string)
+	if !ok {
+		return nil
+	}
+	return r.World(n)
 }
 
 func (r *Runtime) Player(uuid uuid.UUID) *Player {
@@ -129,4 +154,15 @@ func (r *Runtime) PlayerJoin(p *player.Player) player.Handler {
 	}
 	pl.p = nil
 	return pl
+}
+
+func (r *Runtime) exportUUID(c goja.FunctionCall, idx int) uuid.UUID {
+	switch arg := c.Argument(idx).Export().(type) {
+	case string:
+		return uuid.MustParse(arg)
+	case uuid.UUID:
+		return arg
+	default:
+		panic(r.vm.NewTypeError("argument %d must be a string or uuid.UUID, got %T", idx, c.Argument(idx).Export()))
+	}
 }

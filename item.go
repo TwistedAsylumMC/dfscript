@@ -165,32 +165,27 @@ func (r *Runtime) setupItem() error {
 		Method("armourTierNetherite", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.ArmourTierNetherite{})
 		}).
-		Method("armourTrim", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("armourTrim", func(m map[string]any) goja.Value {
 			t, _ := m["template"].(item.SmithingTemplateType)
 			mat, _ := m["material"].(item.ArmourTrimMaterial)
 			return r.vm.ToValue(item.ArmourTrim{Template: t, Material: mat})
 		}).
-		Method("arrow", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("arrow", func(m map[string]any) goja.Value {
 			tip, _ := m["tip"].(potion.Potion)
 			return r.vm.ToValue(item.Arrow{Tip: tip})
 		}).
-		Method("axe", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("axe", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Axe{Tier: tier})
 		}).
 		Method("bakedPotato", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.BakedPotato{})
 		}).
-		Method("bannerPattern", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("bannerPattern", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(item.BannerPatternType)
 			return r.vm.ToValue(item.BannerPattern{Type: t})
 		}).
-		Method("beef", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("beef", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Beef{Cooked: cooked})
 		}).
@@ -215,13 +210,11 @@ func (r *Runtime) setupItem() error {
 		Method("book", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Book{})
 		}).
-		Method("bookAndQuill", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("bookAndQuill", func(m map[string]any) goja.Value {
 			pages, _ := m["pages"].([]string)
 			return r.vm.ToValue(item.BookAndQuill{Pages: pages})
 		}).
-		Method("boots", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("boots", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ArmourTier)
 			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Boots{Tier: tier, Trim: trim})
@@ -241,8 +234,7 @@ func (r *Runtime) setupItem() error {
 		Method("brick", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Brick{})
 		}).
-		Method("bucket", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("bucket", func(m map[string]any) goja.Value {
 			cont, _ := m["content"].(item.BucketContent)
 			return r.vm.ToValue(item.Bucket{Content: cont})
 		}).
@@ -252,14 +244,12 @@ func (r *Runtime) setupItem() error {
 		Method("charcoal", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Charcoal{})
 		}).
-		Method("chestplate", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("chestplate", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ArmourTier)
 			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Chestplate{Tier: tier, Trim: trim})
 		}).
-		Method("chicken", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("chicken", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Chicken{Cooked: cooked})
 		}).
@@ -272,8 +262,7 @@ func (r *Runtime) setupItem() error {
 		Method("coal", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Coal{})
 		}).
-		Method("cod", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("cod", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Cod{Cooked: cooked})
 		}).
@@ -301,8 +290,7 @@ func (r *Runtime) setupItem() error {
 		Method("driedKelp", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.DriedKelp{})
 		}).
-		Method("dye", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("dye", func(m map[string]any) goja.Value {
 			col, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(item.Dye{Colour: col})
 		}).
@@ -336,14 +324,12 @@ func (r *Runtime) setupItem() error {
 		Method("fireCharge", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.FireCharge{})
 		}).
-		Method("firework", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("firework", func(m map[string]any) goja.Value {
 			d, _ := m["duration"].(time.Duration)
 			explosions, _ := m["explosions"].([]item.FireworkExplosion)
 			return r.vm.ToValue(item.Firework{Duration: d, Explosions: explosions})
 		}).
-		Method("fireworkExplosion", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("fireworkExplosion", func(m map[string]any) goja.Value {
 			shape, _ := m["shape"].(item.FireworkShape)
 			colour, _ := m["colour"].(item.Colour)
 			fade, _ := m["fade"].(item.Colour)
@@ -359,8 +345,7 @@ func (r *Runtime) setupItem() error {
 				Trail:   trail,
 			})
 		}).
-		Method("fireworkStar", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("fireworkStar", func(m map[string]any) goja.Value {
 			explosion, _ := m["explosion"].(item.FireworkExplosion)
 			return r.vm.ToValue(item.FireworkStar{FireworkExplosion: explosion})
 		}).
@@ -382,8 +367,7 @@ func (r *Runtime) setupItem() error {
 		Method("glowstoneDust", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.GlowstoneDust{})
 		}).
-		Method("goatHorn", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("goatHorn", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(sound.Horn)
 			return r.vm.ToValue(item.GoatHorn{Type: t})
 		}).
@@ -405,14 +389,12 @@ func (r *Runtime) setupItem() error {
 		Method("heartOfTheSea", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.HeartOfTheSea{})
 		}).
-		Method("helmet", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("helmet", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ArmourTier)
 			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Helmet{Tier: tier, Trim: trim})
 		}).
-		Method("hoe", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("hoe", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Hoe{Tier: tier})
 		}).
@@ -434,14 +416,12 @@ func (r *Runtime) setupItem() error {
 		Method("leather", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Leather{})
 		}).
-		Method("leggings", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("leggings", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ArmourTier)
 			trim, _ := m["trim"].(item.ArmourTrim)
 			return r.vm.ToValue(item.Leggings{Tier: tier, Trim: trim})
 		}).
-		Method("lingeringPotion", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("lingeringPotion", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(potion.Potion)
 			return r.vm.ToValue(item.LingeringPotion{Type: t})
 		}).
@@ -454,13 +434,11 @@ func (r *Runtime) setupItem() error {
 		Method("mushroomStew", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.MushroomStew{})
 		}).
-		Method("musicDisc", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("musicDisc", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(sound.DiscType)
 			return r.vm.ToValue(item.MusicDisc{DiscType: t})
 		}).
-		Method("mutton", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("mutton", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Mutton{Cooked: cooked})
 		}).
@@ -488,8 +466,7 @@ func (r *Runtime) setupItem() error {
 		Method("phantomMembrane", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.PhantomMembrane{})
 		}).
-		Method("pickaxe", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("pickaxe", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Pickaxe{Tier: tier})
 		}).
@@ -499,18 +476,15 @@ func (r *Runtime) setupItem() error {
 		Method("poppedChorusFruit", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.PoppedChorusFruit{})
 		}).
-		Method("porkchop", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("porkchop", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Porkchop{Cooked: cooked})
 		}).
-		Method("potion", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("potion", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(potion.Potion)
 			return r.vm.ToValue(item.Potion{Type: t})
 		}).
-		Method("potterySherd", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("potterySherd", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(item.SherdType)
 			return r.vm.ToValue(item.PotterySherd{Type: t})
 		}).
@@ -526,8 +500,7 @@ func (r *Runtime) setupItem() error {
 		Method("pumpkinPie", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.PumpkinPie{})
 		}).
-		Method("rabbit", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("rabbit", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Rabbit{Cooked: cooked})
 		}).
@@ -558,8 +531,7 @@ func (r *Runtime) setupItem() error {
 		Method("rottenFlesh", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.RottenFlesh{})
 		}).
-		Method("salmon", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("salmon", func(m map[string]any) goja.Value {
 			cooked, _ := m["cooked"].(bool)
 			return r.vm.ToValue(item.Salmon{Cooked: cooked})
 		}).
@@ -569,8 +541,7 @@ func (r *Runtime) setupItem() error {
 		Method("shears", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Shears{})
 		}).
-		Method("shovel", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("shovel", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Shovel{Tier: tier})
 		}).
@@ -580,8 +551,7 @@ func (r *Runtime) setupItem() error {
 		Method("slimeball", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Slimeball{})
 		}).
-		Method("smithingTemplate", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("smithingTemplate", func(m map[string]any) goja.Value {
 			t, _ := m["template"].(item.SmithingTemplateType)
 			return r.vm.ToValue(item.SmithingTemplate{Template: t})
 		}).
@@ -591,8 +561,7 @@ func (r *Runtime) setupItem() error {
 		Method("spiderEye", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.SpiderEye{})
 		}).
-		Method("splashPotion", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("splashPotion", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(potion.Potion)
 			return r.vm.ToValue(item.SplashPotion{Type: t})
 		}).
@@ -605,13 +574,11 @@ func (r *Runtime) setupItem() error {
 		Method("sugar", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Sugar{})
 		}).
-		Method("suspiciousStew", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("suspiciousStew", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(item.StewType)
 			return r.vm.ToValue(item.SuspiciousStew{Type: t})
 		}).
-		Method("sword", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("sword", func(m map[string]any) goja.Value {
 			tier, _ := m["tier"].(item.ToolTier)
 			return r.vm.ToValue(item.Sword{Tier: tier})
 		}).
@@ -633,8 +600,7 @@ func (r *Runtime) setupItem() error {
 		Method("wheat", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(item.Wheat{})
 		}).
-		Method("writtenBook", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("writtenBook", func(m map[string]any) goja.Value {
 			title, _ := m["title"].(string)
 			author, _ := m["author"].(string)
 			gen, _ := m["generation"].(item.WrittenBookGeneration)

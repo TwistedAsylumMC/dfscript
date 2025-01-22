@@ -200,22 +200,19 @@ func (r *Runtime) setupBlock() error {
 			facing, _ := m["facing"].(cube.Direction)
 			return block.Anvil{Type: t, Facing: facing}
 		}).
-		Method("banner", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("banner", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			attachment, _ := m["attach"].(block.Attachment)
 			patterns, _ := m["patterns"].([]block.BannerPatternLayer)
 			illager, _ := m["illager"].(bool)
 			return r.vm.ToValue(block.Banner{Colour: colour, Attach: attachment, Patterns: patterns, Illager: illager})
 		}).
-		Method("bannerPatternLayer", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("bannerPatternLayer", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.BannerPatternType)
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.BannerPatternLayer{Type: t, Colour: colour})
 		}).
-		Method("barrel", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("barrel", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Face)
 			open, _ := m["open"].(bool)
 			customName, _ := m["customName"].(string)
@@ -224,37 +221,31 @@ func (r *Runtime) setupBlock() error {
 		Method("barrier", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Barrier{})
 		}).
-		Method("basalt", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("basalt", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			polished, _ := m["polished"].(bool)
 			return r.vm.ToValue(block.Basalt{Axis: axis, Polished: polished})
 		}).
-		Method("beacon", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("beacon", func(m map[string]any) goja.Value {
 			primary, _ := m["primary"].(effect.LastingType)
 			secondary, _ := m["secondary"].(effect.LastingType)
 			return r.vm.ToValue(block.Beacon{Primary: primary, Secondary: secondary})
 		}).
-		Method("bedrock", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("bedrock", func(m map[string]any) goja.Value {
 			infinite, _ := m["infiniteBurning"].(bool)
 			return r.vm.ToValue(block.Bedrock{InfiniteBurning: infinite})
 		}).
-		Method("beetrootSeeds", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("beetrootSeeds", func(m map[string]any) goja.Value {
 			growth, _ := m["growth"].(int64)
 			b := block.BeetrootSeeds{}
 			b.Growth = int(growth)
 			return r.vm.ToValue(b)
 		}).
-		Method("blackstone", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("blackstone", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.BlackstoneType)
 			return r.vm.ToValue(block.Blackstone{Type: t})
 		}).
-		Method("blastFurnace", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("blastFurnace", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			lit, _ := m["lit"].(bool)
 			return r.vm.ToValue(block.BlastFurnace{Facing: facing, Lit: lit})
@@ -262,16 +253,14 @@ func (r *Runtime) setupBlock() error {
 		Method("blueIce", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.BlueIce{})
 		}).
-		Method("bone", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("bone", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.Bone{Axis: axis})
 		}).
 		Method("bookshelf", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Bookshelf{})
 		}).
-		Method("brewingStand", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("brewingStand", func(m map[string]any) goja.Value {
 			left, _ := m["left"].(bool)
 			middle, _ := m["middle"].(bool)
 			right, _ := m["right"].(bool)
@@ -280,21 +269,18 @@ func (r *Runtime) setupBlock() error {
 		Method("bricks", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Bricks{})
 		}).
-		Method("cactus", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("cactus", func(m map[string]any) goja.Value {
 			age, _ := m["age"].(int64)
 			return r.vm.ToValue(block.Cactus{Age: int(age)})
 		}).
-		Method("cake", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("cake", func(m map[string]any) goja.Value {
 			bites, _ := m["bites"].(int64)
 			return r.vm.ToValue(block.Cake{Bites: int(bites)})
 		}).
 		Method("calcite", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Calcite{})
 		}).
-		Method("campfire", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("campfire", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.FireType)
 			rawItems, _ := m["items"].([]block.CampfireItem)
 			facing, _ := m["facing"].(cube.Direction)
@@ -319,25 +305,21 @@ func (r *Runtime) setupBlock() error {
 			}
 			return r.vm.ToValue(block.CampfireItem{Item: i, Time: t})
 		}).
-		Method("carpet", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("carpet", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.Carpet{Colour: colour})
 		}).
-		Method("carrot", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("carrot", func(m map[string]any) goja.Value {
 			growth, _ := m["growth"].(int64)
 			b := block.Carrot{}
 			b.Growth = int(growth)
 			return r.vm.ToValue(b)
 		}).
-		Method("chain", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("chain", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.Chain{Axis: axis})
 		}).
-		Method("chest", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("chest", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			customName, _ := m["customName"].(string)
 			return r.vm.ToValue(block.Chest{Facing: facing, CustomName: customName})
@@ -354,34 +336,28 @@ func (r *Runtime) setupBlock() error {
 		Method("coal", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Coal{})
 		}).
-		Method("coalOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("coalOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.CoalOre{Type: t})
 		}).
-		Method("cobblestone", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("cobblestone", func(m map[string]any) goja.Value {
 			mossy, _ := m["mossy"].(bool)
 			return r.vm.ToValue(block.Cobblestone{Mossy: mossy})
 		}).
-		Method("cocoaBean", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("cocoaBean", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			age, _ := m["age"].(int64)
 			return r.vm.ToValue(block.CocoaBean{Facing: facing, Age: int(age)})
 		}).
-		Method("composter", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("composter", func(m map[string]any) goja.Value {
 			level, _ := m["level"].(int64)
 			return r.vm.ToValue(block.Composter{Level: int(level)})
 		}).
-		Method("concrete", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("concrete", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.Concrete{Colour: colour})
 		}).
-		Method("concretePowder", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("concretePowder", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.ConcretePowder{Colour: colour})
 		}).
@@ -392,15 +368,13 @@ func (r *Runtime) setupBlock() error {
 			}
 			return r.vm.ToValue(block.ContinueCrackAction{BreakTime: t})
 		}).
-		Method("copper", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("copper", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.CopperType)
 			o, _ := m["oxidation"].(block.OxidationType)
 			waxed, _ := m["waxed"].(bool)
 			return r.vm.ToValue(block.Copper{Type: t, Oxidation: o, Waxed: waxed})
 		}).
-		Method("copperDoor", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("copperDoor", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			o, _ := m["oxidation"].(block.OxidationType)
 			waxed, _ := m["waxed"].(bool)
@@ -409,19 +383,16 @@ func (r *Runtime) setupBlock() error {
 			right, _ := m["right"].(bool)
 			return r.vm.ToValue(block.CopperDoor{Facing: facing, Oxidation: o, Waxed: waxed, Open: open, Top: top, Right: right})
 		}).
-		Method("copperGrate", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("copperGrate", func(m map[string]any) goja.Value {
 			o, _ := m["oxidation"].(block.OxidationType)
 			waxed, _ := m["waxed"].(bool)
 			return r.vm.ToValue(block.CopperGrate{Oxidation: o, Waxed: waxed})
 		}).
-		Method("copperOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("copperOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.CopperOre{Type: t})
 		}).
-		Method("copperTrapdoor", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("copperTrapdoor", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			o, _ := m["oxidation"].(block.OxidationType)
 			waxed, _ := m["waxed"].(bool)
@@ -429,14 +400,12 @@ func (r *Runtime) setupBlock() error {
 			top, _ := m["top"].(bool)
 			return r.vm.ToValue(block.CopperTrapdoor{Facing: facing, Oxidation: o, Waxed: waxed, Open: open, Top: top})
 		}).
-		Method("coral", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("coral", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.CoralType)
 			dead, _ := m["dead"].(bool)
 			return r.vm.ToValue(block.Coral{Type: t, Dead: dead})
 		}).
-		Method("coralBlock", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("coralBlock", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.CoralType)
 			dead, _ := m["dead"].(bool)
 			return r.vm.ToValue(block.CoralBlock{Type: t, Dead: dead})
@@ -454,8 +423,7 @@ func (r *Runtime) setupBlock() error {
 		Method("deadBush", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.DeadBush{})
 		}).
-		Method("decoratedPot", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("decoratedPot", func(m map[string]any) goja.Value {
 			i, _ := m["item"].(item.Stack)
 			facing, _ := m["facing"].(cube.Direction)
 			rawDeco, _ := m["decorations"].([]block.PotDecoration)
@@ -476,46 +444,39 @@ func (r *Runtime) setupBlock() error {
 			success, _ := c.Argument(1).Export().(bool)
 			return r.vm.ToValue(block.DecoratedPotWobbleAction{DecoratedPot: b, Success: success})
 		}).
-		Method("deepslate", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("deepslate", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.DeepslateType)
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.Deepslate{Type: t, Axis: axis})
 		}).
-		Method("deepslateBricks", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("deepslateBricks", func(m map[string]any) goja.Value {
 			cracked, _ := m["cracked"].(bool)
 			return r.vm.ToValue(block.DeepslateBricks{Cracked: cracked})
 		}).
-		Method("deepslateTiles", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("deepslateTiles", func(m map[string]any) goja.Value {
 			cracked, _ := m["cracked"].(bool)
 			return r.vm.ToValue(block.DeepslateTiles{Cracked: cracked})
 		}).
 		Method("diamond", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Diamond{})
 		}).
-		Method("diamondOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("diamondOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.DiamondOre{Type: t})
 		}).
-		Method("dirt", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("dirt", func(m map[string]any) goja.Value {
 			coarse, _ := m["coarse"].(bool)
 			return r.vm.ToValue(block.Dirt{Coarse: coarse})
 		}).
 		Method("dirtPath", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.DirtPath{})
 		}).
-		Method("doubleFlower", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("doubleFlower", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.DoubleFlowerType)
 			top, _ := m["upperPart"].(bool)
 			return r.vm.ToValue(block.DoubleFlower{Type: t, UpperPart: top})
 		}).
-		Method("doubleTallGrass", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("doubleTallGrass", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.DoubleTallGrassType)
 			top, _ := m["upperPart"].(bool)
 			return r.vm.ToValue(block.DoubleTallGrass{Type: t, UpperPart: top})
@@ -532,8 +493,7 @@ func (r *Runtime) setupBlock() error {
 		Method("emerald", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Emerald{})
 		}).
-		Method("emeraldOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("emeraldOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.EmeraldOre{Type: t})
 		}).
@@ -543,29 +503,25 @@ func (r *Runtime) setupBlock() error {
 		Method("endBricks", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.EndBricks{})
 		}).
-		Method("endRod", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("endRod", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Face)
 			return r.vm.ToValue(block.EndRod{Facing: facing})
 		}).
 		Method("endStone", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.EndStone{})
 		}).
-		Method("enderChest", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("enderChest", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.EnderChest{Facing: facing})
 		}).
-		Method("farmland", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("farmland", func(m map[string]any) goja.Value {
 			hydration, _ := m["hydration"].(int64)
 			return r.vm.ToValue(block.Farmland{Hydration: int(hydration)})
 		}).
 		Method("fern", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Fern{})
 		}).
-		Method("fire", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("fire", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.FireType)
 			age, _ := m["age"].(int64)
 			return r.vm.ToValue(block.Fire{Type: t, Age: int(age)})
@@ -576,19 +532,16 @@ func (r *Runtime) setupBlock() error {
 		Method("fletchingTable", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.FletchingTable{})
 		}).
-		Method("flower", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("flower", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.FlowerType)
 			return r.vm.ToValue(block.Flower{Type: t})
 		}).
-		Method("froglight", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("froglight", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.FroglightType)
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.Froglight{Type: t, Axis: axis})
 		}).
-		Method("furnace", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("furnace", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			lit, _ := m["lit"].(bool)
 			return r.vm.ToValue(block.Furnace{Facing: facing, Lit: lit})
@@ -599,8 +552,7 @@ func (r *Runtime) setupBlock() error {
 		Method("glassPane", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.GlassPane{})
 		}).
-		Method("glazedTerracotta", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("glazedTerracotta", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.GlazedTerracotta{Colour: colour, Facing: facing})
@@ -611,8 +563,7 @@ func (r *Runtime) setupBlock() error {
 		Method("gold", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Gold{})
 		}).
-		Method("goldOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("goldOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.GoldOre{Type: t})
 		}).
@@ -622,22 +573,19 @@ func (r *Runtime) setupBlock() error {
 		Method("gravel", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Gravel{})
 		}).
-		Method("grindstone", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("grindstone", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			a, _ := m["attach"].(block.GrindstoneAttachment)
 			return r.vm.ToValue(block.Grindstone{Facing: facing, Attach: a})
 		}).
-		Method("hayBale", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("hayBale", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.HayBale{Axis: axis})
 		}).
 		Method("honeycomb", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Honeycomb{})
 		}).
-		Method("hopper", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("hopper", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Face)
 			powered, _ := m["powered"].(bool)
 			customName, _ := m["customName"].(string)
@@ -655,13 +603,11 @@ func (r *Runtime) setupBlock() error {
 		Method("ironBars", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.IronBars{})
 		}).
-		Method("ironOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("ironOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.IronOre{Type: t})
 		}).
-		Method("itemFrame", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("itemFrame", func(m map[string]any) goja.Value {
 			i, _ := m["item"].(item.Stack)
 			facing, _ := m["facing"].(cube.Face)
 			rotations, _ := m["rotations"].(int64)
@@ -669,23 +615,19 @@ func (r *Runtime) setupBlock() error {
 			glowing, _ := m["glowing"].(bool)
 			return r.vm.ToValue(block.ItemFrame{Facing: facing, Item: i, Rotations: int(rotations), DropChance: dropChance, Glowing: glowing})
 		}).
-		Method("jukebox", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("jukebox", func(m map[string]any) goja.Value {
 			i, _ := m["item"].(item.Stack)
 			return r.vm.ToValue(block.Jukebox{Item: i})
 		}).
-		Method("kelp", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("kelp", func(m map[string]any) goja.Value {
 			age, _ := m["age"].(int64)
 			return r.vm.ToValue(block.Kelp{Age: int(age)})
 		}).
-		Method("ladder", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("ladder", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.Ladder{Facing: facing})
 		}).
-		Method("lantern", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("lantern", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.FireType)
 			hanging, _ := m["hanging"].(bool)
 			return r.vm.ToValue(block.Lantern{Type: t, Hanging: hanging})
@@ -693,13 +635,11 @@ func (r *Runtime) setupBlock() error {
 		Method("lapis", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Lapis{})
 		}).
-		Method("lapisOre", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("lapisOre", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.OreType)
 			return r.vm.ToValue(block.LapisOre{Type: t})
 		}).
-		Method("lava", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("lava", func(m map[string]any) goja.Value {
 			depth, _ := m["depth"].(int64)
 			still, _ := m["still"].(bool)
 			falling, _ := m["falling"].(bool)
@@ -708,47 +648,40 @@ func (r *Runtime) setupBlock() error {
 		Method("lavaDamageSource", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.LavaDamageSource{})
 		}).
-		Method("leaves", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("leaves", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			persistent, _ := m["persistent"].(bool)
 			shouldUpdate, _ := m["shouldUpdate"].(bool)
 			return r.vm.ToValue(block.Leaves{Wood: wood, Persistent: persistent, ShouldUpdate: shouldUpdate})
 		}).
-		Method("lectern", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("lectern", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			i, _ := m["item"].(item.Stack)
 			page, _ := m["page"].(int64)
 			return r.vm.ToValue(block.Lectern{Facing: facing, Book: i, Page: int(page)})
 		}).
-		Method("light", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("light", func(m map[string]any) goja.Value {
 			level, _ := m["level"].(int64)
 			return r.vm.ToValue(block.Light{Level: int(level)})
 		}).
-		Method("litPumpkin", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("litPumpkin", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.LitPumpkin{Facing: facing})
 		}).
-		Method("log", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("log", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			axis, _ := m["axis"].(cube.Axis)
 			stripped, _ := m["stripped"].(bool)
 			return r.vm.ToValue(block.Log{Wood: wood, Axis: axis, Stripped: stripped})
 		}).
-		Method("loom", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("loom", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.Loom{Facing: facing})
 		}).
 		Method("melon", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Melon{})
 		}).
-		Method("melonSeeds", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("melonSeeds", func(m map[string]any) goja.Value {
 			direction, _ := m["direction"].(cube.Face)
 			growth, _ := m["growth"].(int64)
 			b := block.MelonSeeds{Direction: direction}
@@ -764,16 +697,14 @@ func (r *Runtime) setupBlock() error {
 		Method("mudBricks", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.MudBricks{})
 		}).
-		Method("muddyMangroveRoots", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("muddyMangroveRoots", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.MuddyMangroveRoots{Axis: axis})
 		}).
 		Method("netherBrickFence", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.NetherBrickFence{})
 		}).
-		Method("netherBricks", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("netherBricks", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.NetherBricksType)
 			return r.vm.ToValue(block.NetherBricks{Type: t})
 		}).
@@ -786,13 +717,11 @@ func (r *Runtime) setupBlock() error {
 		Method("netherSprouts", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.NetherSprouts{})
 		}).
-		Method("netherWart", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("netherWart", func(m map[string]any) goja.Value {
 			age, _ := m["age"].(int64)
 			return r.vm.ToValue(block.NetherWart{Age: int(age)})
 		}).
-		Method("netherWartBlock", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("netherWartBlock", func(m map[string]any) goja.Value {
 			warped, _ := m["warped"].(bool)
 			return r.vm.ToValue(block.NetherWartBlock{Warped: warped})
 		}).
@@ -802,13 +731,11 @@ func (r *Runtime) setupBlock() error {
 		Method("netherrack", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Netherrack{})
 		}).
-		Method("note", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("note", func(m map[string]any) goja.Value {
 			pitch, _ := m["pitch"].(int64)
 			return r.vm.ToValue(block.Note{Pitch: int(pitch)})
 		}).
-		Method("obsidian", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("obsidian", func(m map[string]any) goja.Value {
 			crying, _ := m["crying"].(bool)
 			return r.vm.ToValue(block.Obsidian{Crying: crying})
 		}).
@@ -821,47 +748,40 @@ func (r *Runtime) setupBlock() error {
 		Method("packedMud", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.PackedMud{})
 		}).
-		Method("pinkPetals", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("pinkPetals", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			additional, _ := m["additionalCount"].(int64)
 			return r.vm.ToValue(block.PinkPetals{Facing: facing, AdditionalCount: int(additional)})
 		}).
-		Method("planks", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("planks", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			return r.vm.ToValue(block.Planks{Wood: wood})
 		}).
 		Method("podzol", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Podzol{})
 		}).
-		Method("polishedBlackstoneBrick", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("polishedBlackstoneBrick", func(m map[string]any) goja.Value {
 			cracked, _ := m["cracked"].(bool)
 			return r.vm.ToValue(block.PolishedBlackstoneBrick{Cracked: cracked})
 		}).
 		Method("polishedTuff", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.PolishedTuff{})
 		}).
-		Method("potato", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("potato", func(m map[string]any) goja.Value {
 			growth, _ := m["growth"].(int64)
 			b := block.Potato{}
 			b.Growth = int(growth)
 			return r.vm.ToValue(b)
 		}).
-		Method("prismarine", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("prismarine", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.PrismarineType)
 			return r.vm.ToValue(block.Prismarine{Type: t})
 		}).
-		Method("pumpkin", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("pumpkin", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.Pumpkin{Facing: facing})
 		}).
-		Method("pumpkinSeeds", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("pumpkinSeeds", func(m map[string]any) goja.Value {
 			direction, _ := m["direction"].(cube.Face)
 			growth, _ := m["growth"].(int64)
 			b := block.PumpkinSeeds{Direction: direction}
@@ -871,21 +791,18 @@ func (r *Runtime) setupBlock() error {
 		Method("purpur", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Purpur{})
 		}).
-		Method("purpurPillar", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("purpurPillar", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.PurpurPillar{Axis: axis})
 		}).
-		Method("quartz", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("quartz", func(m map[string]any) goja.Value {
 			smooth, _ := m["smooth"].(bool)
 			return r.vm.ToValue(block.Quartz{Smooth: smooth})
 		}).
 		Method("quartzBricks", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.QuartzBricks{})
 		}).
-		Method("quartzPillar", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("quartzPillar", func(m map[string]any) goja.Value {
 			axis, _ := m["axis"].(cube.Axis)
 			return r.vm.ToValue(block.QuartzPillar{Axis: axis})
 		}).
@@ -904,18 +821,15 @@ func (r *Runtime) setupBlock() error {
 		Method("resin", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Resin{})
 		}).
-		Method("resinBricks", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("resinBricks", func(m map[string]any) goja.Value {
 			chiseled, _ := m["chiseled"].(bool)
 			return r.vm.ToValue(block.ResinBricks{Chiseled: chiseled})
 		}).
-		Method("sand", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("sand", func(m map[string]any) goja.Value {
 			red, _ := m["red"].(bool)
 			return r.vm.ToValue(block.Sand{Red: red})
 		}).
-		Method("sandstone", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("sandstone", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.SandstoneType)
 			red, _ := m["red"].(bool)
 			return r.vm.ToValue(block.Sandstone{Type: t, Red: red})
@@ -923,21 +837,18 @@ func (r *Runtime) setupBlock() error {
 		Method("seaLantern", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.SeaLantern{})
 		}).
-		Method("seaPickle", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("seaPickle", func(m map[string]any) goja.Value {
 			dead, _ := m["dead"].(bool)
 			return r.vm.ToValue(block.SeaPickle{Dead: dead})
 		}).
-		Method("shortGrass", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("shortGrass", func(m map[string]any) goja.Value {
 			double, _ := m["double"].(bool)
 			return r.vm.ToValue(block.ShortGrass{Double: double})
 		}).
 		Method("shroomlight", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Shroomlight{})
 		}).
-		Method("sign", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("sign", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			a, _ := m["attach"].(block.Attachment)
 			front, _ := m["front"].(block.SignText)
@@ -945,22 +856,19 @@ func (r *Runtime) setupBlock() error {
 			waxed, _ := m["waxed"].(bool)
 			return r.vm.ToValue(block.Sign{Wood: wood, Attach: a, Front: front, Back: back, Waxed: waxed})
 		}).
-		Method("signText", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("signText", func(m map[string]any) goja.Value {
 			text, _ := m["text"].(string)
 			owner, _ := m["owner"].(string)
 			colour, _ := m["baseColour"].(color.RGBA)
 			glowing, _ := m["glowing"].(bool)
 			return r.vm.ToValue(block.SignText{Text: text, Owner: owner, BaseColour: colour, Glowing: glowing})
 		}).
-		Method("skull", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("skull", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.SkullType)
 			a, _ := m["attach"].(block.Attachment)
 			return r.vm.ToValue(block.Skull{Type: t, Attach: a})
 		}).
-		Method("slab", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("slab", func(m map[string]any) goja.Value {
 			b, _ := m["block"].(world.Block)
 			double, _ := m["double"].(bool)
 			top, _ := m["top"].(bool)
@@ -969,8 +877,7 @@ func (r *Runtime) setupBlock() error {
 		Method("smithingTable", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.SmithingTable{})
 		}).
-		Method("smoker", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("smoker", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			lit, _ := m["lit"].(bool)
 			return r.vm.ToValue(block.Smoker{Facing: facing, Lit: lit})
@@ -984,31 +891,26 @@ func (r *Runtime) setupBlock() error {
 		Method("soulSoil", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.SoulSoil{})
 		}).
-		Method("sponge", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("sponge", func(m map[string]any) goja.Value {
 			wet, _ := m["wet"].(bool)
 			return r.vm.ToValue(block.Sponge{Wet: wet})
 		}).
 		Method("sporeBlossom", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.SporeBlossom{})
 		}).
-		Method("stainedGlass", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stainedGlass", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.StainedGlass{Colour: colour})
 		}).
-		Method("stainedGlassPane", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stainedGlassPane", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.StainedGlassPane{Colour: colour})
 		}).
-		Method("stainedTerracotta", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stainedTerracotta", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.StainedTerracotta{Colour: colour})
 		}).
-		Method("stairs", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stairs", func(m map[string]any) goja.Value {
 			b, _ := m["block"].(world.Block)
 			facing, _ := m["facing"].(cube.Direction)
 			upsideDown, _ := m["upsideDown"].(bool)
@@ -1021,26 +923,22 @@ func (r *Runtime) setupBlock() error {
 			}
 			return r.vm.ToValue(block.StartCrackAction{BreakTime: t})
 		}).
-		Method("stone", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stone", func(m map[string]any) goja.Value {
 			smooth, _ := m["smooth"].(bool)
 			return r.vm.ToValue(block.Stone{Smooth: smooth})
 		}).
-		Method("stoneBricks", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stoneBricks", func(m map[string]any) goja.Value {
 			t, _ := m["type"].(block.StoneBricksType)
 			return r.vm.ToValue(block.StoneBricks{Type: t})
 		}).
-		Method("stonecutter", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("stonecutter", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Direction)
 			return r.vm.ToValue(block.Stonecutter{Facing: facing})
 		}).
 		Method("stopCrackAction", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.StopCrackAction{})
 		}).
-		Method("sugarCane", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("sugarCane", func(m map[string]any) goja.Value {
 			age, _ := m["age"].(int64)
 			return r.vm.ToValue(block.SugarCane{Age: int(age)})
 		}).
@@ -1050,32 +948,27 @@ func (r *Runtime) setupBlock() error {
 		Method("terracotta", func(c goja.FunctionCall) goja.Value {
 			return r.vm.ToValue(block.Terracotta{})
 		}).
-		Method("torch", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("torch", func(m map[string]any) goja.Value {
 			facing, _ := m["facing"].(cube.Face)
 			t, _ := m["type"].(block.FireType)
 			return r.vm.ToValue(block.Torch{Facing: facing, Type: t})
 		}).
-		Method("tuff", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("tuff", func(m map[string]any) goja.Value {
 			chiseled, _ := m["chiseled"].(bool)
 			return r.vm.ToValue(block.Tuff{Chiseled: chiseled})
 		}).
-		Method("tuffBricks", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("tuffBricks", func(m map[string]any) goja.Value {
 			chiseled, _ := m["chiseled"].(bool)
 			return r.vm.ToValue(block.TuffBricks{Chiseled: chiseled})
 		}).
-		Method("vines", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("vines", func(m map[string]any) goja.Value {
 			north, _ := m["north"].(bool)
 			east, _ := m["east"].(bool)
 			south, _ := m["south"].(bool)
 			west, _ := m["west"].(bool)
 			return r.vm.ToValue(block.Vines{NorthDirection: north, EastDirection: east, SouthDirection: south, WestDirection: west})
 		}).
-		Method("wall", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("wall", func(m map[string]any) goja.Value {
 			b, _ := m["block"].(world.Block)
 			north, _ := m["north"].(block.WallConnectionType)
 			east, _ := m["east"].(block.WallConnectionType)
@@ -1091,29 +984,25 @@ func (r *Runtime) setupBlock() error {
 				Post:            post,
 			})
 		}).
-		Method("water", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("water", func(m map[string]any) goja.Value {
 			depth, _ := m["depth"].(int64)
 			still, _ := m["still"].(bool)
 			falling, _ := m["falling"].(bool)
 			return r.vm.ToValue(block.Water{Depth: int(depth), Still: still, Falling: falling})
 		}).
-		Method("wheatSeeds", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("wheatSeeds", func(m map[string]any) goja.Value {
 			growth, _ := m["growth"].(int64)
 			b := block.WheatSeeds{}
 			b.Growth = int(growth)
 			return r.vm.ToValue(b)
 		}).
-		Method("wood", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("wood", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			axis, _ := m["axis"].(cube.Axis)
 			stripped, _ := m["stripped"].(bool)
 			return r.vm.ToValue(block.Wood{Wood: wood, Axis: axis, Stripped: stripped})
 		}).
-		Method("woodDoor", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("woodDoor", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			facing, _ := m["facing"].(cube.Direction)
 			open, _ := m["open"].(bool)
@@ -1121,29 +1010,25 @@ func (r *Runtime) setupBlock() error {
 			right, _ := m["right"].(bool)
 			return r.vm.ToValue(block.WoodDoor{Wood: wood, Facing: facing, Open: open, Top: top, Right: right})
 		}).
-		Method("woodFence", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("woodFence", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			return r.vm.ToValue(block.WoodFence{Wood: wood})
 		}).
-		Method("woodFenceGate", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("woodFenceGate", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			facing, _ := m["facing"].(cube.Direction)
 			open, _ := m["open"].(bool)
 			lowered, _ := m["lowered"].(bool)
 			return r.vm.ToValue(block.WoodFenceGate{Wood: wood, Facing: facing, Open: open, Lowered: lowered})
 		}).
-		Method("woodTrapdoor", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("woodTrapdoor", func(m map[string]any) goja.Value {
 			wood, _ := m["wood"].(block.WoodType)
 			facing, _ := m["facing"].(cube.Direction)
 			open, _ := m["open"].(bool)
 			top, _ := m["top"].(bool)
 			return r.vm.ToValue(block.WoodTrapdoor{Wood: wood, Facing: facing, Open: open, Top: top})
 		}).
-		Method("wool", func(c goja.FunctionCall) goja.Value {
-			m := c.Argument(0).Export().(map[string]any)
+		PropsMethod("wool", func(m map[string]any) goja.Value {
 			colour, _ := m["colour"].(item.Colour)
 			return r.vm.ToValue(block.Wool{Colour: colour})
 		}).

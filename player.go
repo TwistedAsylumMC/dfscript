@@ -1,6 +1,7 @@
 package dfscript
 
 import (
+	"fmt"
 	"github.com/df-mc/dragonfly/server/block"
 	"github.com/df-mc/dragonfly/server/block/cube"
 	"github.com/df-mc/dragonfly/server/cmd"
@@ -481,11 +482,7 @@ func (p *Player) setup() {
 		if !ok {
 			panic(vm.NewTypeError("argument 0 is not a cube.Pos, got %T", c.Argument(0).Export()))
 		}
-		tx, ok := c.Argument(1).Export().(*world.Tx)
-		if !ok {
-			panic(vm.NewTypeError("argument 1 is not a *world.Tx, got %T", c.Argument(1).Export()))
-		}
-		pl.OpenBlockContainer(pos, tx)
+		pl.OpenBlockContainer(pos, pl.Tx())
 		return nil
 	})
 	setExec("openSign", func(c goja.FunctionCall, pl *player.Player) goja.Value {
@@ -1047,6 +1044,11 @@ func (p *Player) setup() {
 	})
 	setExec("velocity", func(c goja.FunctionCall, pl *player.Player) goja.Value {
 		return vm.ToValue(pl.Velocity())
+	})
+	setExec("world", func(c goja.FunctionCall, pl *player.Player) goja.Value {
+		fmt.Println(pl.Tx().World().Name())
+		fmt.Println(p.r.World(pl.Tx().World().Name()))
+		return vm.ToValue(p.r.World(pl.Tx().World().Name()).obj)
 	})
 
 	events := []string{

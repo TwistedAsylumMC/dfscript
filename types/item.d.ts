@@ -269,7 +269,7 @@ declare namespace item {
         twinkle: boolean;
         trail: boolean;
     }
-    function fireworkExplosion(props: { shape?: FireworkShape, colour?: Colour, fade?: Colour, fades?: boolean, twinkle?: boolean, trail?: boolean }): FireworkExplosion;
+    function fireworkExplosion(props?: { shape?: FireworkShape, colour?: Colour, fade?: Colour, fades?: boolean, twinkle?: boolean, trail?: boolean }): FireworkExplosion;
 
     interface Tool {
         toolType(): ToolType;
@@ -287,25 +287,25 @@ declare namespace item {
         template: SmithingTemplateType;
         material: ArmourTrimMaterial;
     }
-    function armourTrim(props: { template?: SmithingTemplateType, material?: ArmourTrimMaterial }): ArmourTrim;
+    function armourTrim(props?: { template?: SmithingTemplateType, material?: ArmourTrimMaterial }): ArmourTrim;
     interface Arrow extends Item {
         Tip: potion.Potion;
     }
-    function arrow(props: { tip?: potion.Potion }): Arrow;
+    function arrow(props?: { tip?: potion.Potion }): Arrow;
     interface Axe extends Item, Tool {
         tier: ToolTier;
     }
-    function axe(props: { tier?: ToolTier }): Axe;
+    function axe(props?: { tier?: ToolTier }): Axe;
     interface BakedPotato extends Item {}
     function bakedPotato(): BakedPotato;
     interface BannerPattern extends Item {
         type: BannerPatternType;
     }
-    function bannerPattern(props: { type?: BannerPatternType }): BannerPattern;
+    function bannerPattern(props?: { type?: BannerPatternType }): BannerPattern;
     interface Beef extends Item {
         cooked: boolean;
     }
-    function beef(props: { cooked?: boolean }): Beef;
+    function beef(props?: { cooked?: boolean }): Beef;
     interface Beetroot extends Item {}
     function beetroot(): Beetroot;
     interface BeetrootSoup extends Item {}
@@ -323,12 +323,12 @@ declare namespace item {
     interface BookAndQuill extends Item {
         pages: string[];
     }
-    function bookAndQuill(props: { pages?: string[] }): BookAndQuill;
+    function bookAndQuill(props?: { pages?: string[] }): BookAndQuill;
     interface Boots extends Item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function boots(props: { tier?: ArmourTier, trim?: ArmourTrim }): Boots;
+    function boots(props?: { tier?: ArmourTier, trim?: ArmourTrim }): Boots;
     interface BottleOfEnchanting extends Item {}
     function bottleOfEnchanting(): BottleOfEnchanting;
     interface Bow extends Item {}
@@ -342,7 +342,7 @@ declare namespace item {
     interface Bucket extends Item {
         content: BucketContents;
     }
-    function bucket(props: { content?: BucketContents }): Bucket;
+    function bucket(props?: { content?: BucketContents }): Bucket;
     interface CarrotOnAStick extends Item {}
     function carrotOnAStick(): CarrotOnAStick;
     interface Charcoal extends Item {}
@@ -351,11 +351,11 @@ declare namespace item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function chestplate(props: { tier?: ArmourTier, trim?: ArmourTrim }): Chestplate;
+    function chestplate(props?: { tier?: ArmourTier, trim?: ArmourTrim }): Chestplate;
     interface Chicken extends Item {
         cooked: boolean;
     }
-    function chicken(props: { cooked?: boolean }): Chicken;
+    function chicken(props?: { cooked?: boolean }): Chicken;
     interface ClayBall extends Item {}
     function clayBall(): ClayBall;
     interface Clock extends Item {}
@@ -365,7 +365,7 @@ declare namespace item {
     interface Cod extends Item {
         cooked: boolean;
     }
-    function cod(props: { cooked?: boolean }): Cod;
+    function cod(props?: { cooked?: boolean }): Cod;
     interface Compass extends Item {}
     function compass(): Compass;
     interface Cookie extends Item {}
@@ -385,7 +385,7 @@ declare namespace item {
     interface Dye extends Item {
         colour: Colour;
     }
-    function dye(props: { colour?: Colour }): Dye;
+    function dye(props?: { colour?: Colour }): Dye;
     interface EchoShard extends Item {}
     function echoShard(): EchoShard;
     interface Egg extends Item {}
@@ -410,11 +410,11 @@ declare namespace item {
         duration: Date;
         explosions: FireworkExplosion[];
     }
-    function firework(props: { duration?: Date, explosions?: FireworkExplosion[] }): Firework;
+    function firework(props?: { duration?: Date, explosions?: FireworkExplosion[] }): Firework;
     interface FireworkStar extends Item {
         fireworkExplosion: FireworkExplosion;
     }
-    function fireworkStar(props: { explosion?: FireworkExplosion }): FireworkStar;
+    function fireworkStar(props?: { explosion?: FireworkExplosion }): FireworkStar;
     interface Flint extends Item {}
     function flint(): Flint;
     interface FlintAndSteel extends Item {}
@@ -430,7 +430,7 @@ declare namespace item {
     interface GoatHorn extends Item {
         type: sound.HornType;
     }
-    function goatHorn(props: { type?: sound.HornType }): GoatHorn;
+    function goatHorn(props?: { type?: sound.HornType }): GoatHorn;
     interface GoldIngot extends Item, ArmourTrimMaterial {}
     function goldIngot(): GoldIngot;
     interface GoldNugget extends Item {}
@@ -447,11 +447,11 @@ declare namespace item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function helmet(props: { tier?: ArmourTier, trim?: ArmourTrim }): Helmet;
+    function helmet(props?: { tier?: ArmourTier, trim?: ArmourTrim }): Helmet;
     interface Hoe extends Item, Tool {
         tier: ToolTier;
     }
-    function hoe(props: { tier?: ToolTier }): Hoe;
+    function hoe(props?: { tier?: ToolTier }): Hoe;
     interface Honeycomb extends Item {}
     function honeycomb(): Honeycomb;
     interface InkSac extends Item {}
@@ -468,11 +468,11 @@ declare namespace item {
         tier: ArmourTier;
         trim: ArmourTrim;
     }
-    function leggings(props: { tier?: ArmourTier, trim?: ArmourTrim }): Leggings;
+    function leggings(props?: { tier?: ArmourTier, trim?: ArmourTrim }): Leggings;
     interface LingeringPotion extends Item {
         type: potion.Potion;
     }
-    function lingeringPotion(props: { type?: potion.Potion }): LingeringPotion;
+    function lingeringPotion(props?: { type?: potion.Potion }): LingeringPotion;
     interface MagmaCream extends Item {}
     function magmaCream(): MagmaCream;
     interface MelonSlice extends Item {}
@@ -482,11 +482,11 @@ declare namespace item {
     interface MusicDisc extends Item {
         type: sound.DiscType;
     }
-    function musicDisc(props: { type?: sound.DiscType }): MusicDisc;
+    function musicDisc(props?: { type?: sound.DiscType }): MusicDisc;
     interface Mutton extends Item {
         cooked: boolean;
     }
-    function mutton(props: { cooked?: boolean }): Mutton;
+    function mutton(props?: { cooked?: boolean }): Mutton;
     interface NautilusShell extends Item {}
     function nautilusShell(): NautilusShell;
     interface NetherBrick extends Item {}
@@ -506,7 +506,7 @@ declare namespace item {
     interface Pickaxe extends Item, Tool {
         tier: ToolTier;
     }
-    function pickaxe(props: { tier?: ToolTier }): Pickaxe;
+    function pickaxe(props?: { tier?: ToolTier }): Pickaxe;
     interface PoisonousPotato extends Item {}
     function poisonousPotato(): PoisonousPotato;
     interface PoppedChorusFruit extends Item {}
@@ -514,15 +514,15 @@ declare namespace item {
     interface Porkchop extends Item {
         cooked: boolean;
     }
-    function porkchop(props: { cooked?: boolean }): Porkchop;
+    function porkchop(props?: { cooked?: boolean }): Porkchop;
     interface Potion extends Item {
         type: potion.Potion;
     }
-    function potion(props: { type?: potion.Potion }): Potion;
+    function potion(props?: { type?: potion.Potion }): Potion;
     interface PotterySherd extends Item {
         type: SherdType;
     }
-    function potterySherd(props: { type?: SherdType }): PotterySherd;
+    function potterySherd(props?: { type?: SherdType }): PotterySherd;
     interface PrismarineCrystals extends Item {}
     function prismarineCrystals(): PrismarineCrystals;
     interface PrismarineShard extends Item {}
@@ -534,7 +534,7 @@ declare namespace item {
     interface Rabbit extends Item {
         cooked: boolean;
     }
-    function rabbit(props: { cooked?: boolean }): Rabbit;
+    function rabbit(props?: { cooked?: boolean }): Rabbit;
     interface RabbitFoot extends Item {}
     function rabbitFoot(): RabbitFoot;
     interface RabbitHide extends Item {}
@@ -556,7 +556,7 @@ declare namespace item {
     interface Salmon extends Item {
         cooked: boolean;
     }
-    function salmon(props: { cooked?: boolean }): Salmon;
+    function salmon(props?: { cooked?: boolean }): Salmon;
     interface Scute extends Item {}
     function scute(): Scute;
     interface Shears extends Item, Tool {}
@@ -564,7 +564,7 @@ declare namespace item {
     interface Shovel extends Item, Tool {
         tier: ToolTier;
     }
-    function shovel(props: { tier?: ToolTier }): Shovel;
+    function shovel(props?: { tier?: ToolTier }): Shovel;
     interface ShulkerShell extends Item {}
     function shulkerShell(): ShulkerShell;
     interface Slimeball extends Item {}
@@ -572,7 +572,7 @@ declare namespace item {
     interface SmithingTemplate extends Item {
         template: SmithingTemplateType;
     }
-    function smithingTemplate(props: { template?: SmithingTemplateType }): SmithingTemplate;
+    function smithingTemplate(props?: { template?: SmithingTemplateType }): SmithingTemplate;
     interface Snowball extends Item {}
     function snowball(): Snowball;
     interface SpiderEye extends Item {}
@@ -580,7 +580,7 @@ declare namespace item {
     interface SplashPotion extends Item {
         type: potion.Potion;
     }
-    function splashPotion(props: { type?: potion.Potion }): SplashPotion;
+    function splashPotion(props?: { type?: potion.Potion }): SplashPotion;
     interface Spyglass extends Item {}
     function spyglass(): Spyglass;
     interface Stick extends Item {}
@@ -590,11 +590,11 @@ declare namespace item {
     interface SuspiciousStew extends Item {
         type: StewType;
     }
-    function suspiciousStew(props: { type?: StewType }): SuspiciousStew;
+    function suspiciousStew(props?: { type?: StewType }): SuspiciousStew;
     interface Sword extends Item, Tool {
         tier: ToolTier;
     }
-    function sword(props: { tier?: ToolTier }): Sword;
+    function sword(props?: { tier?: ToolTier }): Sword;
     interface Totem extends Item {}
     function totem(): Totem;
     interface TropicalFish extends Item {}
@@ -611,5 +611,5 @@ declare namespace item {
         generation: WrittenBookGeneration;
         pages: string[];
     }
-    function writtenBook(props: { title?: string, author?: string, generation?: WrittenBookGeneration, pages?: string[] }): WrittenBook;
+    function writtenBook(props?: { title?: string, author?: string, generation?: WrittenBookGeneration, pages?: string[] }): WrittenBook;
 }
