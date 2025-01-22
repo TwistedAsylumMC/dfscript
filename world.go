@@ -5,6 +5,7 @@ import (
 	"github.com/df-mc/dragonfly/server/world"
 	"github.com/dop251/goja"
 	"github.com/go-gl/mathgl/mgl64"
+	"slices"
 	"time"
 )
 
@@ -122,8 +123,9 @@ func (w *World) setup() {
 	setExec := func(name string, f func(c goja.FunctionCall, tx *world.Tx) goja.Value) {
 		obj.Method(name, func(c goja.FunctionCall) goja.Value {
 			var ret goja.Value
+			this, args := c.This, slices.Clone(c.Arguments)
 			w.w.Exec(func(tx *world.Tx) {
-				f(c, tx)
+				f(goja.FunctionCall{This: this, Arguments: args}, tx)
 			})
 			return ret
 		})
