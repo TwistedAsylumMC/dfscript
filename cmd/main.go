@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/df-mc/dragonfly/server"
+	"github.com/df-mc/dragonfly/server/cmd"
 	"github.com/df-mc/dragonfly/server/player/chat"
+	"github.com/df-mc/dragonfly/server/world"
 	"github.com/pelletier/go-toml"
 	"github.com/twistedasylummc/dfscript"
 	"io/fs"
@@ -12,6 +14,8 @@ import (
 	"path/filepath"
 	"strings"
 )
+
+var runtime *dfscript.Runtime
 
 func main() {
 	slog.SetLogLoggerLevel(slog.LevelDebug)
@@ -24,7 +28,9 @@ func main() {
 	srv := conf.New()
 	srv.CloseOnProgramEnd()
 
-	r, err := dfscript.NewRuntime(srv)
+	cmd.Register(cmd.New("reload", "Reloads all scripts", nil, reloadCommand{srv: srv}))
+
+	runtime, err = dfscript.NewRuntime(srv)
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +45,8 @@ func main() {
 		if err != nil {
 			return fmt.Errorf("read %s: %w", path, err)
 		}
-		if ok := r.Run(string(data)); !ok {
+		fmt.Println("Running", path)
+		if ok := runtime.Run(string(data)); !ok {
 			return fmt.Errorf("failed to run %s", path)
 		}
 		return nil
@@ -50,8 +57,49 @@ func main() {
 
 	srv.Listen()
 	for p := range srv.Accept() {
-		h := r.PlayerJoin(p)
+		h := runtime.PlayerJoin(p)
 		p.Handle(h)
+	}
+}
+
+type reloadCommand struct {
+	srv *server.Server
+}
+
+func (r reloadCommand) Run(src cmd.Source, o *cmd.Output, tx *world.Tx) {
+	if runtime != nil {
+		runtime.Close()
+	}
+
+	var err error
+	runtime, err = dfscript.NewRuntime(r.srv)
+	if err != nil {
+		panic(err)
+	}
+
+	err = filepath.Walk("examples", func(path string, info fs.FileInfo, err error) error {
+		if err != nil {
+			return fmt.Errorf("%s: %w", path, err)
+		} else if info.IsDir() || !strings.HasSuffix(info.Name(), ".index.js") {
+			return nil
+		}
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return fmt.Errorf("read %s: %w", path, err)
+		}
+		fmt.Println("Running", path)
+		if ok := runtime.Run(string(data)); !ok {
+			return fmt.Errorf("failed to run %s", path)
+		}
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	for player := range r.srv.Players(tx) {
+		h := runtime.PlayerJoin(player)
+		player.Handle(h)
 	}
 }
 
