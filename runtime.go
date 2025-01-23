@@ -78,8 +78,6 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	process.Enable(r.vm)
 	url.Enable(r.vm)
 
-	r.worlds[s.World().Name()] = s.World()
-
 	var err error
 	multierr.AppendInto(&err, r.setupBiome())
 	multierr.AppendInto(&err, r.setupBlock())
@@ -129,11 +127,20 @@ func (r *Runtime) Run(script string) bool {
 	})
 }
 
+func (r *Runtime) AddWorld(w *world.World) world.Handler {
+	r.worlds[w.Name()] = w
+	return &WorldHandler{r: r}
+}
+
 func (r *Runtime) World(name string) *world.World {
 	if w, ok := r.worlds[name]; ok {
 		return w
 	}
 	return nil
+}
+
+func (r *Runtime) RemoveWorld(name string) {
+	delete(r.worlds, name)
 }
 
 func (r *Runtime) PlayerJoin(p *player.Player) player.Handler {

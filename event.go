@@ -46,6 +46,11 @@ func (r *Runtime) setupEvent() error {
 		"onPlayerItemConsume", "onPlayerItemDamage", "onPlayerAttackEntity", "onPlayerExperienceGain", "onPlayerPunchAir",
 		"onPlayerHurt", "onPlayerHeal", "onPlayerFoodLoss", "onPlayerDeath", "onPlayerRespawn", "onPlayerQuit",
 		"onPlayerDiagnostics", "onPlayerJoin",
+
+		// World Events
+		"onWorldLiquidFlow", "onWorldLiquidDecay", "onWorldLiquidHarden", "onWorldSound", "onWorldFireSpread",
+		"onWorldBlockBurn", "onWorldCropTrample", "onWorldLeavesDecay", "onWorldEntitySpawn", "onWorldEntityDespawn",
+		"onWorldClose",
 	}
 	for _, name := range events {
 		obj.Method(name, func(c goja.FunctionCall) goja.Value {

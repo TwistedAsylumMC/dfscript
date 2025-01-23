@@ -5,6 +5,7 @@
 /// <reference path="mgl64.d.ts" />
 /// <reference path="player.d.ts" />
 /// <reference path="skin.d.ts" />
+/// <reference path="sound.d.ts" />
 /// <reference path="world.d.ts" />
 
 declare namespace event {
@@ -189,4 +190,62 @@ declare namespace event {
     function onPlayerRespawn(callback: (event: PlayerRespawnEvent) => void): number;
     function onPlayerQuit(callback: (event: PlayerQuitEvent) => void): number;
     function onPlayerDiagnostics(callback: (event: PlayerDiagnosticsEvent) => void): number;
+
+    interface WorldEvent extends Event {
+        tx: world.Tx;
+    }
+
+    interface WorldLiquidFlowEvent extends WorldEvent, Cancelable {
+        from: cube.Pos;
+        into: cube.Pos;
+        liquid: block.Liquid;
+        replaced: block.Block;
+    }
+    interface WorldLiquidDecayEvent extends WorldEvent, Cancelable {
+        pos: cube.Pos;
+        before: block.Liquid;
+        after: block.Liquid;
+    }
+    interface WorldLiquidHardenEvent extends WorldEvent, Cancelable {
+        pos: cube.Pos;
+        liquid: block.Block;
+        otherLiquid: block.Block;
+        newBlock: block.Block;
+    }
+    interface WorldSoundEvent extends WorldEvent, Cancelable {
+        pos: mgl64.Vec3;
+        sound: sound.Sound;
+    }
+    interface WorldFireSpreadEvent extends WorldEvent, Cancelable {
+        from: cube.Pos;
+        to: cube.Pos;
+    }
+    interface WorldBlockBurnEvent extends WorldEvent, Cancelable {
+        pos: cube.Pos;
+    }
+    interface WorldCropTrampleEvent extends WorldEvent, Cancelable {
+        pos: cube.Pos;
+    }
+    interface WorldLeavesDecayEvent extends WorldEvent, Cancelable {
+        pos: cube.Pos;
+    }
+    interface WorldEntitySpawnEvent extends WorldEvent {
+        entity: entity.Entity;
+    }
+    interface WorldEntityDespawnEvent extends WorldEvent {
+        entity: entity.Entity;
+    }
+    interface WorldCloseEvent extends WorldEvent {}
+
+    function onWorldLiquidFlowEvent(callback: (event: WorldLiquidFlowEvent) => void): number;
+    function onWorldLiquidDecayEvent(callback: (event: WorldLiquidDecayEvent) => void): number;
+    function onWorldLiquidHardenEvent(callback: (event: WorldLiquidHardenEvent) => void): number;
+    function onWorldSoundEvent(callback: (event: WorldSoundEvent) => void): number;
+    function onWorldFireSpreadEvent(callback: (event: WorldFireSpreadEvent) => void): number;
+    function onWorldBlockBurnEvent(callback: (event: WorldBlockBurnEvent) => void): number;
+    function onWorldCropTrampleEvent(callback: (event: WorldCropTrampleEvent) => void): number;
+    function onWorldLeavesDecayEvent(callback: (event: WorldLeavesDecayEvent) => void): number;
+    function onWorldEntitySpawnEvent(callback: (event: WorldEntitySpawnEvent) => void): number;
+    function onWorldEntityDespawnEvent(callback: (event: WorldEntityDespawnEvent) => void): number;
+    function onWorldCloseEvent(callback: (event: WorldCloseEvent) => void): number;
 }

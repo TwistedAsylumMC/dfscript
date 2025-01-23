@@ -34,6 +34,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	wh := runtime.AddWorld(srv.World())
+	srv.World().Handle(wh)
 
 	err = filepath.Walk("examples", func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
@@ -76,6 +78,8 @@ func (r reloadCommand) Run(src cmd.Source, o *cmd.Output, tx *world.Tx) {
 	if err != nil {
 		panic(err)
 	}
+	wh := runtime.AddWorld(r.srv.World())
+	r.srv.World().Handle(wh)
 
 	err = filepath.Walk("examples", func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
