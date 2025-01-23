@@ -16,7 +16,7 @@ type customForm struct {
 
 	title    string
 	elements []form.Element
-	submit   func(p *goja.Object, values []any, closed bool)
+	submit   func(tx *world.Tx, p *player.Player, values []any, closed bool)
 }
 
 func (f *customForm) Label(text string) *customForm {
@@ -49,7 +49,7 @@ func (f *customForm) StepSlider(text string, steps []string, defaultValue int) *
 	return f
 }
 
-func (f *customForm) OnSubmit(submit func(p *goja.Object, values []any, closed bool)) *customForm {
+func (f *customForm) OnSubmit(submit func(tx *world.Tx, p *player.Player, values []any, closed bool)) *customForm {
 	f.submit = submit
 	return f
 }
@@ -64,14 +64,9 @@ func (f *customForm) MarshalJSON() ([]byte, error) {
 
 func (f *customForm) SubmitJSON(b []byte, submitter form.Submitter, tx *world.Tx) error {
 	pl := submitter.(*player.Player)
-	p := f.r.Player(pl.UUID())
-	p.p = pl
-	defer func() {
-		p.p = nil
-	}()
 	if b == nil {
 		if f.submit != nil {
-			f.submit(p.obj, nil, true)
+			f.submit(tx, pl, nil, true)
 		}
 		return nil
 	}
@@ -94,7 +89,7 @@ func (f *customForm) SubmitJSON(b []byte, submitter form.Submitter, tx *world.Tx
 		values = append(values, v)
 	}
 	if f.submit != nil {
-		f.submit(p.obj, values, false)
+		f.submit(tx, pl, values, false)
 	}
 	return nil
 }
@@ -159,17 +154,17 @@ type menuForm struct {
 	title       string
 	body        string
 	buttons     []form.Button
-	buttonFuncs []func(p *goja.Object)
-	submit      func(p *goja.Object, index int, closed bool)
+	buttonFuncs []func(tx *world.Tx, p *player.Player)
+	submit      func(tx *world.Tx, p *player.Player, index int, closed bool)
 }
 
-func (f *menuForm) Button(text, image string, submit func(p *goja.Object)) *menuForm {
+func (f *menuForm) Button(text, image string, submit func(tx *world.Tx, p *player.Player)) *menuForm {
 	f.buttons = append(f.buttons, form.NewButton(text, image))
 	f.buttonFuncs = append(f.buttonFuncs, submit)
 	return f
 }
 
-func (f *menuForm) OnSubmit(submit func(p *goja.Object, index int, closed bool)) *menuForm {
+func (f *menuForm) OnSubmit(submit func(tx *world.Tx, p *player.Player, index int, closed bool)) *menuForm {
 	f.submit = submit
 	return f
 }
@@ -185,14 +180,9 @@ func (f *menuForm) MarshalJSON() ([]byte, error) {
 
 func (f *menuForm) SubmitJSON(b []byte, submitter form.Submitter, tx *world.Tx) error {
 	pl := submitter.(*player.Player)
-	p := f.r.Player(pl.UUID())
-	p.p = pl
-	defer func() {
-		p.p = nil
-	}()
 	if b == nil {
 		if f.submit != nil {
-			f.submit(p.obj, -1, true)
+			f.submit(tx, pl, -1, true)
 		}
 		return nil
 	}
@@ -206,10 +196,10 @@ func (f *menuForm) SubmitJSON(b []byte, submitter form.Submitter, tx *world.Tx) 
 		return fmt.Errorf("button index points to inexistent button: %v (only %v buttons present)", index, len(f.buttons))
 	}
 	if f.buttonFuncs[index] != nil {
-		f.buttonFuncs[index](p.obj)
+		f.buttonFuncs[index](tx, pl)
 	}
 	if f.submit != nil {
-		f.submit(p.obj, int(index), false)
+		f.submit(tx, pl, int(index), false)
 	}
 	return nil
 }
@@ -220,23 +210,23 @@ type modalForm struct {
 	title       string
 	body        string
 	buttons     [2]string
-	buttonFuncs [2]func(p *goja.Object)
-	submit      func(p *goja.Object, index int, closed bool)
+	buttonFuncs [2]func(tx *world.Tx, p *player.Player)
+	submit      func(tx *world.Tx, p *player.Player, index int, closed bool)
 }
 
-func (f *modalForm) Yes(text string, submit func(p *goja.Object)) *modalForm {
+func (f *modalForm) Yes(text string, submit func(tx *world.Tx, p *player.Player)) *modalForm {
 	f.buttons[0] = text
 	f.buttonFuncs[0] = submit
 	return f
 }
 
-func (f *modalForm) No(text string, submit func(p *goja.Object)) *modalForm {
+func (f *modalForm) No(text string, submit func(tx *world.Tx, p *player.Player)) *modalForm {
 	f.buttons[1] = text
 	f.buttonFuncs[1] = submit
 	return f
 }
 
-func (f *modalForm) OnSubmit(submit func(p *goja.Object, index int, closed bool)) *modalForm {
+func (f *modalForm) OnSubmit(submit func(tx *world.Tx, p *player.Player, index int, closed bool)) *modalForm {
 	f.submit = submit
 	return f
 }
@@ -253,14 +243,9 @@ func (f *modalForm) MarshalJSON() ([]byte, error) {
 
 func (f *modalForm) SubmitJSON(b []byte, submitter form.Submitter, tx *world.Tx) error {
 	pl := submitter.(*player.Player)
-	p := f.r.Player(pl.UUID())
-	p.p = pl
-	defer func() {
-		p.p = nil
-	}()
 	if b == nil {
 		if f.submit != nil {
-			f.submit(p.obj, -1, true)
+			f.submit(tx, pl, -1, true)
 		}
 		return nil
 	}
@@ -272,16 +257,16 @@ func (f *modalForm) SubmitJSON(b []byte, submitter form.Submitter, tx *world.Tx)
 	var index int
 	if value {
 		if f.buttonFuncs[0] != nil {
-			f.buttonFuncs[0](p.obj)
+			f.buttonFuncs[0](tx, pl)
 		}
 	} else {
 		if f.buttonFuncs[1] != nil {
-			f.buttonFuncs[1](p.obj)
+			f.buttonFuncs[1](tx, pl)
 		}
 		index = 1
 	}
 	if f.submit != nil {
-		f.submit(p.obj, index, false)
+		f.submit(tx, pl, index, false)
 	}
 	return nil
 }

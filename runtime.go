@@ -3,6 +3,7 @@ package dfscript
 import (
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/player"
+	"github.com/df-mc/dragonfly/server/world"
 	"github.com/dop251/goja"
 	"github.com/dop251/goja_nodejs/buffer"
 	"github.com/dop251/goja_nodejs/console"
@@ -11,9 +12,13 @@ import (
 	"github.com/dop251/goja_nodejs/url"
 	"github.com/google/uuid"
 	"go.uber.org/multierr"
+	"reflect"
+	"strings"
+	"unicode"
 )
 
 type callable struct {
+	id   int
 	f    goja.Callable
 	this goja.Value
 }
@@ -25,9 +30,32 @@ type Runtime struct {
 	reg  *require.Registry
 	loop *EventLoop
 
-	worlds       map[string]*World
-	players      map[uuid.UUID]*Player
-	onPlayerJoin []callable
+	worlds       map[string]*world.World
+	eventHandles map[string][]callable
+	nextEventID  int
+}
+
+type uncapFieldNameMapper struct{}
+
+func (u uncapFieldNameMapper) FieldName(_ reflect.Type, f reflect.StructField) string {
+	return uncap(f.Name)
+}
+
+func (u uncapFieldNameMapper) MethodName(_ reflect.Type, m reflect.Method) string {
+	return uncap(m.Name)
+}
+
+func uncap(s string) string {
+	b := strings.Builder{}
+	for i, k := range s {
+		if unicode.IsUpper(k) {
+			b.WriteRune(unicode.ToLower(k))
+			continue
+		}
+		b.WriteString(s[i:])
+		break
+	}
+	return b.String()
 }
 
 func NewRuntime(s *server.Server) (*Runtime, error) {
@@ -37,10 +65,10 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 		vm:  goja.New(),
 		reg: new(require.Registry),
 
-		worlds:  make(map[string]*World),
-		players: make(map[uuid.UUID]*Player),
+		worlds:       make(map[string]*world.World),
+		eventHandles: make(map[string][]callable),
 	}
-	r.vm.SetFieldNameMapper(goja.UncapFieldNameMapper())
+	r.vm.SetFieldNameMapper(uncapFieldNameMapper{})
 	r.reg.Enable(r.vm)
 	r.loop = NewEventLoop(r.vm, EnableConsole(true), WithRegistry(r.reg))
 	r.loop.Start()
@@ -50,7 +78,7 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	process.Enable(r.vm)
 	url.Enable(r.vm)
 
-	r.worlds[s.World().Name()] = NewWorld(r, s.World())
+	r.worlds[s.World().Name()] = s.World()
 
 	var err error
 	multierr.AppendInto(&err, r.setupBiome())
@@ -82,6 +110,8 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	multierr.AppendInto(&err, r.setupTitle())
 	multierr.AppendInto(&err, r.setupWorld())
 
+	multierr.AppendInto(&err, r.setupEvent())
+
 	multierr.AppendInto(&err, r.setupMgl64())
 
 	if err != nil {
@@ -99,61 +129,24 @@ func (r *Runtime) Run(script string) bool {
 	})
 }
 
-func (r *Runtime) World(name string) *World {
+func (r *Runtime) World(name string) *world.World {
 	if w, ok := r.worlds[name]; ok {
 		return w
 	}
 	return nil
 }
 
-func (r *Runtime) WorldFromValue(v goja.Value) *World {
-	if v == nil {
-		return nil
-	}
-	m, ok := v.Export().(map[string]any)
-	if !ok {
-		return nil
-	}
-	n, ok := m["name"].(string)
-	if !ok {
-		return nil
-	}
-	return r.World(n)
-}
-
-func (r *Runtime) Player(uuid uuid.UUID) *Player {
-	if p, ok := r.players[uuid]; ok {
-		return p
-	}
-	return nil
-}
-
-func (r *Runtime) PlayerFromValue(v goja.Value) *Player {
-	if v == nil {
-		return nil
-	}
-	m, ok := v.Export().(map[string]any)
-	if !ok {
-		return nil
-	}
-	u, ok := m["uuid"].(uuid.UUID)
-	if !ok {
-		return nil
-	}
-	return r.Player(u)
-}
-
 func (r *Runtime) PlayerJoin(p *player.Player) player.Handler {
-	pl := NewPlayer(r, p)
-	r.players[p.UUID()] = pl
-	for _, c := range r.onPlayerJoin {
-		_, err := c.f(c.this, r.vm.ToValue(r.Player(p.UUID()).obj))
-		if err != nil {
-			panic(err)
+	calls, ok := r.eventHandles["onPlayerJoin"]
+	if ok {
+		for _, c := range calls {
+			_, err := c.f(c.this, r.vm.ToValue(p))
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
-	pl.p = nil
-	return pl
+	return &PlayerHandler{r: r}
 }
 
 func (r *Runtime) exportUUID(c goja.FunctionCall, idx int) uuid.UUID {

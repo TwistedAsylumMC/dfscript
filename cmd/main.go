@@ -67,9 +67,9 @@ type reloadCommand struct {
 }
 
 func (r reloadCommand) Run(src cmd.Source, o *cmd.Output, tx *world.Tx) {
-	if runtime != nil {
-		runtime.Close()
-	}
+	//if runtime != nil {
+	//	runtime.Close()
+	//}
 
 	var err error
 	runtime, err = dfscript.NewRuntime(r.srv)

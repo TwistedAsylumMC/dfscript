@@ -27,29 +27,10 @@ declare namespace world {
         block(pos: cube.Pos): block.Block;
     }
     interface World extends BlockSource {
-        name: string;
-        dimension: Dimension;
-        range: cube.Range;
-        block(pos: cube.Pos): block.Block;
-        setBlock(pos: cube.Pos, block: block.Block, opts?: SetOpts): void;
-        liquid(pos: cube.Pos): block.Liquid;
-        setLiquid(pos: cube.Pos, liquid: block.Liquid): void;
-        // TODO: buildStructure
-        scheduleBlockUpdate(pos: cube.Pos, block: block.Block, delay: number): void;
-        highestLightBlocker(x: number, z: number): number;
-        highestBlock(x: number, z: number): number;
-        light(pos: cube.Pos): number;
-        skyLight(pos: cube.Pos): number;
-        biome(pos: cube.Pos): biome.Biome;
-        setBiome(pos: cube.Pos, biome: biome.Biome): void;
-        temperature(pos: cube.Pos): number;
-        rainingAt(pos: cube.Pos): boolean;
-        snowingAt(pos: cube.Pos): boolean;
-        thunderingAt(pos: cube.Pos): boolean;
-        addParticle(pos: mgl64.Vec3, particle: particle.Particle): void;
-        playEntityAnimation(entity: entity.Entity, animation: EntityAnimation): void;
-        playSound(pos: mgl64.Vec3, sound: sound.Sound): void;
-        players(): player.Player[];
+        name(): string;
+        dimension(): Dimension;
+        range(): cube.Range;
+        exec(tx: (tx: Tx) => void): void;
         time(): number;
         setTime(time: number): void;
         stopTime(): void;
@@ -67,6 +48,29 @@ declare namespace world {
         close(): void;
     }
     function create(config?: Config): World;
+
+    interface Tx {
+        block(pos: cube.Pos): block.Block;
+        setBlock(pos: cube.Pos, block: block.Block, opts?: SetOpts): void;
+        liquid(pos: cube.Pos): block.Liquid;
+        setLiquid(pos: cube.Pos, liquid: block.Liquid): void;
+        // TODO: buildStructure
+        scheduleBlockUpdate(pos: cube.Pos, block: block.Block, delay: Date): void;
+        highestLightBlocker(x: number, z: number): number;
+        highestBlock(x: number, z: number): number;
+        light(pos: cube.Pos): number;
+        skyLight(pos: cube.Pos): number;
+        biome(pos: cube.Pos): biome.Biome;
+        setBiome(pos: cube.Pos, biome: biome.Biome): void;
+        temperature(pos: cube.Pos): number;
+        rainingAt(pos: cube.Pos): boolean;
+        snowingAt(pos: cube.Pos): boolean;
+        thunderingAt(pos: cube.Pos): boolean;
+        addParticle(pos: mgl64.Vec3, particle: particle.Particle): void;
+        playEntityAnimation(entity: entity.Entity, animation: EntityAnimation): void;
+        playSound(pos: mgl64.Vec3, sound: sound.Sound): void;
+        players(): (player: player.Player) => boolean;
+    }
 
     interface Viewer {}
 

@@ -1,6 +1,7 @@
 package dfscript
 
 import (
+	"github.com/df-mc/dragonfly/server/world"
 	"github.com/dop251/goja"
 )
 
@@ -13,19 +14,16 @@ func (r *Runtime) setupServer() error {
 			return r.vm.ToValue(r.s.MaxPlayerCount())
 		}).
 		Method("players", func(c goja.FunctionCall) goja.Value {
-			var players []*goja.Object
-			for _, p := range r.players {
-				players = append(players, p.obj)
-			}
-			return r.vm.ToValue(players)
+			tx, _ := c.Argument(0).Export().(*world.Tx)
+			return r.vm.ToValue(r.s.Players(tx))
 		}).
 		Method("player", func(c goja.FunctionCall) goja.Value {
 			id := r.exportUUID(c, 0)
-			p, ok := r.players[id]
+			h, ok := r.s.Player(id)
 			if !ok {
 				return nil
 			}
-			return r.vm.ToValue(p.obj)
+			return r.vm.ToValue(h)
 		}).
 		Method("playerByName", func(c goja.FunctionCall) goja.Value {
 			name := c.Argument(0).String()
@@ -33,7 +31,7 @@ func (r *Runtime) setupServer() error {
 			if !ok {
 				return nil
 			}
-			return r.vm.ToValue(r.players[h.UUID()].obj)
+			return r.vm.ToValue(h)
 		}).
 		Method("playerByXUID", func(c goja.FunctionCall) goja.Value {
 			xuid := c.Argument(0).String()
@@ -41,15 +39,7 @@ func (r *Runtime) setupServer() error {
 			if !ok {
 				return nil
 			}
-			return r.vm.ToValue(r.players[h.UUID()].obj)
-		}).
-		Method("onPlayerJoin", func(c goja.FunctionCall) goja.Value {
-			f, ok := goja.AssertFunction(c.Argument(0))
-			if !ok {
-				panic(r.vm.NewTypeError("onPlayerJoin expects a function as its first argument"))
-			}
-			r.onPlayerJoin = append(r.onPlayerJoin, callable{f, c.This})
-			return nil
+			return r.vm.ToValue(h)
 		}).
 		Method("world", func(c goja.FunctionCall) goja.Value {
 			name, ok := c.Argument(0).Export().(string)
@@ -63,9 +53,9 @@ func (r *Runtime) setupServer() error {
 			return r.vm.ToValue(w)
 		}).
 		Method("worlds", func(c goja.FunctionCall) goja.Value {
-			var worlds []*goja.Object
+			var worlds []*world.World
 			for _, w := range r.worlds {
-				worlds = append(worlds, w.obj)
+				worlds = append(worlds, w)
 			}
 			return r.vm.ToValue(worlds)
 		}).
