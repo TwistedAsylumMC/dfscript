@@ -1,6 +1,7 @@
 package dfscript
 
 import (
+	"fmt"
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/world"
@@ -127,6 +128,14 @@ func (r *Runtime) Run(script string) bool {
 	})
 }
 
+func (r *Runtime) VM() *goja.Runtime {
+	return r.vm
+}
+
+func (r *Runtime) Loop() *EventLoop {
+	return r.loop
+}
+
 func (r *Runtime) AddWorld(w *world.World) world.Handler {
 	r.worlds[w.Name()] = w
 	return &WorldHandler{r: r}
@@ -154,6 +163,18 @@ func (r *Runtime) PlayerJoin(p *player.Player) player.Handler {
 		}
 	}
 	return &PlayerHandler{r: r}
+}
+
+func (r *Runtime) Close() {
+	r.loop.Stop()
+	r.vm.Interrupt(fmt.Errorf("runtime closed"))
+
+	r.s = nil
+	r.vm = nil
+	r.reg = nil
+	r.loop = nil
+	r.worlds = nil
+	r.eventHandles = nil
 }
 
 func (r *Runtime) exportUUID(c goja.FunctionCall, idx int) uuid.UUID {

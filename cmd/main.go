@@ -6,6 +6,7 @@ import (
 	"github.com/df-mc/dragonfly/server/cmd"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/df-mc/dragonfly/server/world"
+	"github.com/dop251/goja"
 	"github.com/pelletier/go-toml"
 	"github.com/twistedasylummc/dfscript"
 	"io/fs"
@@ -29,33 +30,7 @@ func main() {
 	srv.CloseOnProgramEnd()
 
 	cmd.Register(cmd.New("reload", "Reloads all scripts", nil, reloadCommand{srv: srv}))
-
-	runtime, err = dfscript.NewRuntime(srv)
-	if err != nil {
-		panic(err)
-	}
-	wh := runtime.AddWorld(srv.World())
-	srv.World().Handle(wh)
-
-	err = filepath.Walk("examples", func(path string, info fs.FileInfo, err error) error {
-		if err != nil {
-			return fmt.Errorf("%s: %w", path, err)
-		} else if info.IsDir() || !strings.HasSuffix(info.Name(), ".index.js") {
-			return nil
-		}
-		data, err := os.ReadFile(path)
-		if err != nil {
-			return fmt.Errorf("read %s: %w", path, err)
-		}
-		fmt.Println("Running", path)
-		if ok := runtime.Run(string(data)); !ok {
-			return fmt.Errorf("failed to run %s", path)
-		}
-		return nil
-	})
-	if err != nil {
-		panic(err)
-	}
+	createRuntime(srv, "examples", ".index.js")
 
 	srv.Listen()
 	for p := range srv.Accept() {
@@ -68,42 +43,48 @@ type reloadCommand struct {
 	srv *server.Server
 }
 
-func (r reloadCommand) Run(src cmd.Source, o *cmd.Output, tx *world.Tx) {
-	//if runtime != nil {
-	//	runtime.Close()
-	//}
-
-	var err error
-	runtime, err = dfscript.NewRuntime(r.srv)
-	if err != nil {
-		panic(err)
+func (r reloadCommand) Run(cmd.Source, *cmd.Output, *world.Tx) {
+	if runtime != nil {
+		runtime.Close()
 	}
-	wh := runtime.AddWorld(r.srv.World())
-	r.srv.World().Handle(wh)
+	createRuntime(r.srv, "examples", ".index.js")
 
-	err = filepath.Walk("examples", func(path string, info fs.FileInfo, err error) error {
+	runtime.Loop().RunOnLoop(func(*goja.Runtime) {
+		// Run inside the loop to ensure all onPlayerJoin handlers are registered.
+		for player := range r.srv.Players(nil) {
+			h := runtime.PlayerJoin(player)
+			player.Handle(h)
+		}
+	})
+}
+
+func createRuntime(srv *server.Server, scriptDir, suffix string) {
+	var err error
+	runtime, err = dfscript.NewRuntime(srv)
+	if err != nil {
+		panic(fmt.Errorf("new runtime: %w", err))
+	}
+	wh := runtime.AddWorld(srv.World())
+	srv.World().Handle(wh)
+
+	err = filepath.Walk(scriptDir, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			return fmt.Errorf("%s: %w", path, err)
-		} else if info.IsDir() || !strings.HasSuffix(info.Name(), ".index.js") {
+		} else if info.IsDir() || !strings.HasSuffix(info.Name(), suffix) {
 			return nil
 		}
 		data, err := os.ReadFile(path)
 		if err != nil {
 			return fmt.Errorf("read %s: %w", path, err)
 		}
-		fmt.Println("Running", path)
+		slog.Debug("Running script", "path", path)
 		if ok := runtime.Run(string(data)); !ok {
 			return fmt.Errorf("failed to run %s", path)
 		}
 		return nil
 	})
 	if err != nil {
-		panic(err)
-	}
-
-	for player := range r.srv.Players(tx) {
-		h := runtime.PlayerJoin(player)
-		player.Handle(h)
+		panic(fmt.Errorf("walk %s: %w", scriptDir, err))
 	}
 }
 
