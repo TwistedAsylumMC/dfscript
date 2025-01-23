@@ -56,12 +56,12 @@ declare namespace cube {
     function directions(): Direction[];
 
     class Face {
-        Up: Face;
-        Down: Face;
-        North: Face;
-        East: Face;
-        South: Face;
-        West: Face;
+        static readonly Up: Face;
+        static readonly Down: Face;
+        static readonly North: Face;
+        static readonly East: Face;
+        static readonly South: Face;
+        static readonly West: Face;
 
         axis(): Axis;
         direction(): Direction;
