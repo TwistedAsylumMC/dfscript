@@ -112,6 +112,7 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	multierr.AppendInto(&err, r.setupEvent())
 
 	multierr.AppendInto(&err, r.setupMgl64())
+	multierr.AppendInto(&err, r.setupStd())
 
 	if err != nil {
 		return nil, err
