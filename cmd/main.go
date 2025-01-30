@@ -60,7 +60,7 @@ func (r reloadCommand) Run(cmd.Source, *cmd.Output, *world.Tx) {
 
 func createRuntime(srv *server.Server, scriptDir, suffix string) {
 	var err error
-	runtime, err = dfscript.NewRuntime(srv)
+	runtime, err = dfscript.NewRuntime(srv, scriptDir)
 	if err != nil {
 		panic(fmt.Errorf("new runtime: %w", err))
 	}

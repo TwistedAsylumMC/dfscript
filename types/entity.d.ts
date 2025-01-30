@@ -1,3 +1,4 @@
+/// <reference path="uuid.d.ts">
 /// <reference path="world.d.ts">
 
 declare namespace entity {
@@ -5,7 +6,7 @@ declare namespace entity {
 
     interface Handle<T extends Entity> {
         // TODO: type
-        // TODO: uuid
+        uuid(): uuid.UUID;
         entity(tx: world.Tx): [T, boolean];
         execWorld(tx: (tx: world.Tx, entity: T) => void): void;
         close(): void;

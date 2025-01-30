@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/dop251/goja"
+	"github.com/google/uuid"
 	"os"
 	"time"
 
@@ -220,7 +221,7 @@ func (r *Runtime) setupStd() error {
 		return err
 	}
 
-	return newObject().
+	err = newObject().
 		Method("readFile", func(c goja.FunctionCall) goja.Value {
 			path := c.Argument(0).String()
 			data, err := os.ReadFile(path)
@@ -239,4 +240,17 @@ func (r *Runtime) setupStd() error {
 			return nil
 		}).
 		Apply(r.vm, "os")
+	if err != nil {
+		return err
+	}
+
+	err = newObject().
+		Method("create", func(c goja.FunctionCall) goja.Value {
+			return r.vm.ToValue(uuid.New())
+		}).
+		Method("parse", func(c goja.FunctionCall) goja.Value {
+			return r.vm.ToValue(uuid.MustParse(c.Argument(0).String()))
+		}).
+		Apply(r.vm, "uuid")
+	return nil
 }

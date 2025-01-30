@@ -13,6 +13,7 @@ import (
 	"github.com/dop251/goja_nodejs/url"
 	"github.com/google/uuid"
 	"go.uber.org/multierr"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"unicode"
@@ -59,7 +60,7 @@ func uncap(s string) string {
 	return b.String()
 }
 
-func NewRuntime(s *server.Server) (*Runtime, error) {
+func NewRuntime(s *server.Server, scriptDir string) (*Runtime, error) {
 	r := &Runtime{
 		s: s,
 
@@ -79,7 +80,8 @@ func NewRuntime(s *server.Server) (*Runtime, error) {
 	process.Enable(r.vm)
 	url.Enable(r.vm)
 
-	var err error
+	scriptDir, _ = filepath.Abs(scriptDir)
+	err := r.vm.Set("__scriptDir", scriptDir)
 	multierr.AppendInto(&err, r.setupBiome())
 	multierr.AppendInto(&err, r.setupBlock())
 	multierr.AppendInto(&err, r.setupBossBar())

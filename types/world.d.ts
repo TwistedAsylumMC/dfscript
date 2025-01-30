@@ -7,6 +7,7 @@
 /// <reference path="particle.d.ts" />
 /// <reference path="player.d.ts" />
 /// <reference path="sound.d.ts" />
+/// <reference path="uuid.d.ts" />
 
 declare namespace world {
     interface Config {
@@ -37,8 +38,8 @@ declare namespace world {
         startTime(): void;
         spawn(): cube.Pos;
         setSpawn(pos: cube.Pos): void;
-        playerSpawn(uuid: string): cube.Pos;
-        setPlayerSpawn(uuid: string, pos: cube.Pos): void;
+        playerSpawn(uuid: uuid.UUID): cube.Pos;
+        setPlayerSpawn(uuid: uuid.UUID, pos: cube.Pos): void;
         defaultGameMode(): GameMode;
         setDefaultGameMode(gameMode: GameMode): void;
         setTickRange(range: cube.Range): void;
