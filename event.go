@@ -50,7 +50,7 @@ func (r *Runtime) setupEvent() error {
 		// World Events
 		"onWorldLiquidFlow", "onWorldLiquidDecay", "onWorldLiquidHarden", "onWorldSound", "onWorldFireSpread",
 		"onWorldBlockBurn", "onWorldCropTrample", "onWorldLeavesDecay", "onWorldEntitySpawn", "onWorldEntityDespawn",
-		"onWorldClose",
+		"onWorldExplosion", "onWorldClose",
 	}
 	for _, name := range events {
 		obj.Method(name, func(c goja.FunctionCall) goja.Value {

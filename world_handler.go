@@ -164,6 +164,26 @@ func (w *WorldHandler) HandleEntityDespawn(tx *world.Tx, e world.Entity) {
 	w.callEvent("onWorldEntityDespawn", &entityDespawnEvent{worldEvent: weTx(tx), Entity: e})
 }
 
+type explosionEvent struct {
+	worldEvent
+	cancelableEvent
+	Pos            mgl64.Vec3
+	Entities       []world.Entity
+	Blocks         []cube.Pos
+	ItemDropChance float64
+	SpawnFire      bool
+}
+
+func (w *WorldHandler) HandleExplosion(ctx *world.Context, position mgl64.Vec3, entities *[]world.Entity, blocks *[]cube.Pos, itemDropChance *float64, spawnFire *bool) {
+	e := &explosionEvent{worldEvent: weCtx(ctx), Pos: position, Entities: *entities, Blocks: *blocks,
+		ItemDropChance: *itemDropChance, SpawnFire: *spawnFire}
+	w.callEventCtx("onWorldExplosion", ctx, e)
+	*entities = e.Entities
+	*blocks = e.Blocks
+	*itemDropChance = e.ItemDropChance
+	*spawnFire = e.SpawnFire
+}
+
 type worldCloseEvent struct{ worldEvent }
 
 func (w *WorldHandler) HandleClose(tx *world.Tx) {
